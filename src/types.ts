@@ -75,12 +75,26 @@ export interface UserProfile {
   email: string;
   name: string;
   phone?: string;
-  addresses: Address[];
+  profilePicture?: string;
+  bio?: string;
+  birthdate?: string;
+  address?: {
+    street: string;
+    city: string;
+    state: string;
+    zipCode: string;
+    country: string;
+  };
+  addresses?: Address[];
   preferences: {
     newsletter: boolean;
     notifications: {
       email: boolean;
       push: boolean;
+    };
+    privacy?: {
+      shareProfileData: boolean;
+      allowMarketingCommunication: boolean;
     };
   };
 }
