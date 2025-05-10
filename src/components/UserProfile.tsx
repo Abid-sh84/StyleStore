@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { User, Phone, Mail, Bell, BellOff, Camera, MapPin, Calendar, Clock, AtSign, Shield } from 'lucide-react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { User, Phone, Mail, Bell, BellOff, Camera, MapPin, Calendar, Clock, AtSign, Shield, UserCircle, Lock, Activity, Bookmark, Settings, ChevronDown, Eye, EyeOff, Trash2, GitBranch } from 'lucide-react';
 import { UserProfile } from '../types';
 import { api } from '../lib/api';
 import toast from 'react-hot-toast';
