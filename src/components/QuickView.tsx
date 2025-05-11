@@ -23,13 +23,12 @@ export const QuickView: React.FC<QuickViewProps> = ({
     <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
         <div className="grid md:grid-cols-2 gap-6">
-          <div className="relative aspect-square">
-            <img
+          <div className="relative aspect-square">            <img
               src={product.image}
               alt={product.name}
               className="w-full h-full object-cover"
             />
-            {product.discount > 0 && (
+            {product.discount && product.discount > 0 && (
               <div className="absolute top-4 left-4">
                 <span className="bg-gradient-to-r from-teal-600 to-emerald-600 text-white px-3 py-1 rounded-full text-sm font-medium">
                   -{product.discount}%
@@ -46,15 +45,13 @@ export const QuickView: React.FC<QuickViewProps> = ({
 
           <div className="p-6 flex flex-col">
             <h2 className="text-2xl font-bold text-gray-800 mb-2">{product.name}</h2>
-            <p className="text-gray-600 mb-4">{product.description}</p>
-
-            <div className="flex items-center gap-2 mb-6">
+            <p className="text-gray-600 mb-4">{product.description}</p>            <div className="flex items-center gap-2 mb-6">
               <span className="text-3xl font-bold bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">
                 ${product.price.toFixed(2)}
               </span>
-              {product.discount > 0 && (
+              {product.discount && product.discount > 0 && (
                 <span className="text-lg text-gray-400 line-through">
-                  ${(product.price / (1 - product.discount / 100)).toFixed(2)}
+                  ${(product.price / (1 - (product.discount / 100))).toFixed(2)}
                 </span>
               )}
             </div>
