@@ -11,7 +11,7 @@ export interface Product {
   rating: number;
   reviews: Review[];
   relatedProducts: number[];
- 
+  discount?: number;
 }
 
 export interface Review {
