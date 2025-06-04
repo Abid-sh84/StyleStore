@@ -19,7 +19,7 @@ import OrderSuccess from './components/ordersuccess';
 import ShippingDetails from './components/ShippingDetails';
 import Profile from '../pages/Profile';
 import { useCart } from './components/cartcontent';
-
+//f7i6
 function App() {
   const { cartItems, setCartItems } = useCart();
   const [wishlistItems, setWishlistItems] = useState<Product[]>([]);
