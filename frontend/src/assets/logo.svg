@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="200" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Shopping Bag -->
+    <path d="M150 40 L170 20 L230 20 L250 40 L240 80 L160 80 Z" fill="#FF4757"/>
+    <!-- Bag Handles -->
+    <path d="M180 20 C180 5, 220 5, 220 20" stroke="#FF4757" stroke-width="6" fill="none"/>
+    <!-- Sparkles -->
+    <circle cx="270" cy="30" r="2" fill="white"/>
+    <circle cx="260" cy="45" r="2" fill="white"/>
+    <circle cx="275" cy="50" r="2" fill="white"/>
+    <!-- Text -->
+    <text x="200" y="120" font-family="Inter, Arial" font-weight="600" font-size="36" text-anchor="middle" fill="white" letter-spacing="2">STYLESTORE</text>
+</svg>
