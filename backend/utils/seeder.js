@@ -4,7 +4,7 @@ import Product from '../models/productModel.js';
 import User from '../models/userModel.js';
 
 // Initialize dotenv
-dotenv.config();
+dotenv.config({ path: '.env.prod' });
 
 // Sample product data
 const products = [

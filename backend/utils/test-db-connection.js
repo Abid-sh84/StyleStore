@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 // Initialize dotenv
-dotenv.config();
+dotenv.config({ path: '.env.prod' });
 
 // Test MongoDB connection
 const testConnection = async () => {

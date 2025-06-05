@@ -10,6 +10,7 @@ backend/node_modules/
 
 # Ignore .env
 backend/.env
+backend/.env.prod
 frontend/.env
 
 # Environment variables

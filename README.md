@@ -44,7 +44,7 @@ The application has been updated to use MongoDB for persistent data storage. Key
    ```
 
 3. Configure environment variables:
-   - Ensure your `.env` file has the necessary variables:
+   - Ensure your `.env.prod` file has the necessary variables:
      ```
      NODE_ENV=development
      PORT=5000
@@ -80,11 +80,11 @@ The application has been updated to use MongoDB for persistent data storage. Key
    ```
 
 3. Configure environment variables:
-   - Copy `.env.example` to `.env` and update the values:
+   - Copy `.env.example` to `.env.prod` and update the values:
      ```
-     cp .env.example .env
+     cp .env.example .env.prod
      ```
-   - Add your PayPal client ID to the `.env` file
+   - Add your PayPal client ID to the `.env.prod` file
 
 4. Start the development server:
    ```
@@ -125,8 +125,8 @@ The frontend is configured to communicate with the backend API through the follo
    - Provides error handling
 
 3. **Environment Variables**:
-   - Backend: The `.env` file contains MongoDB URI, JWT secrets, etc.
-   - Frontend: The `.env` file specifies API URLs, PayPal client ID, and other config. Example:
+   - Backend: The `.env.prod` file contains MongoDB URI, JWT secrets, etc.
+  - Frontend: The `.env` file specifies API URLs, PayPal client ID, and other config. Example:
      ```
      VITE_PAYPAL_CLIENT_ID=your_paypal_client_id_here
      ```
