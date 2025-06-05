@@ -13,8 +13,8 @@ import productRoutes from './routes/productRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import systemRoutes from './routes/systemRoutes.js';
 
-// Config
-dotenv.config();
+// Config - Load environment variables from .env.prod
+dotenv.config({ path: '.env.prod' });
 const app = express();
 const PORT = process.env.PORT || 5000;
 const __filename = fileURLToPath(import.meta.url);
