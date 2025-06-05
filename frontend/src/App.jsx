@@ -16,6 +16,8 @@ import ApiTestPage from './pages/ApiTestPage';
 import NotFoundPage from './pages/NotFoundPage';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import AdminRoute from './components/common/AdminRoute';
+import OrderSummaryPage from './pages/OrderSummaryPage';
+import OrderSuccessPage from './pages/OrderSuccessPage';
 
 function App() {
   return (
@@ -51,6 +53,16 @@ function App() {
             </AdminRoute>
           } />
           <Route path="/api-test" element={<ApiTestPage />} />
+          <Route path="/order-summary" element={
+            <ProtectedRoute>
+              <OrderSummaryPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/order-success" element={
+            <ProtectedRoute>
+              <OrderSuccessPage />
+            </ProtectedRoute>
+          } />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

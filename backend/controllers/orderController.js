@@ -70,13 +70,18 @@ const updateOrderToPaid = async (req, res) => {
     const order = await Order.findById(req.params.id);
     
     if (order) {
+      // Log the incoming payment data for debugging
+      console.log('Updating order to paid with data:', req.body);
+      
       order.isPaid = true;
       order.paidAt = Date.now();
+      
+      // Handle potentially missing PayPal data more robustly
       order.paymentResult = {
-        id: req.body.id,
-        status: req.body.status,
-        update_time: req.body.update_time,
-        email_address: req.body.payer.email_address,
+        id: req.body.id || req.body.orderID || '',
+        status: req.body.status || 'COMPLETED',
+        update_time: req.body.update_time || new Date().toISOString(),
+        email_address: req.body.payer?.email_address || '',
       };
       
       const updatedOrder = await order.save();
@@ -86,6 +91,7 @@ const updateOrderToPaid = async (req, res) => {
       res.status(404).json({ message: 'Order not found' });
     }
   } catch (error) {
+    console.error('Error updating order to paid:', error);
     res.status(500).json({ message: error.message });
   }
 };

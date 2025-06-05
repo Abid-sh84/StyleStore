@@ -56,3 +56,23 @@ export const startStatusPolling = (callback, interval = 30000) => {
   
   return () => clearInterval(pollId); // Return function to stop polling
 };
+
+// Get PayPal config (client ID)
+export const getPayPalConfig = async () => {
+  try {
+    const response = await api.get('/system/config/paypal');
+    console.log("PayPal API response:", response);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching PayPal config:', error);
+    // Return the client ID from environment variable to avoid breaking the application
+    return { clientId: import.meta.env.VITE_PAYPAL_CLIENT_ID };
+  }
+};
+
+export const systemService = {
+  getSystemStatus,
+  reconnectDatabase,
+  startStatusPolling,
+  getPayPalConfig,
+};
