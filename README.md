@@ -79,7 +79,14 @@ The application has been updated to use MongoDB for persistent data storage. Key
    npm install
    ```
 
-3. Start the development server:
+3. Configure environment variables:
+   - Copy `.env.example` to `.env` and update the values:
+     ```
+     cp .env.example .env
+     ```
+   - Add your PayPal client ID to the `.env` file
+
+4. Start the development server:
    ```
    npm run dev
    ```
@@ -119,7 +126,10 @@ The frontend is configured to communicate with the backend API through the follo
 
 3. **Environment Variables**:
    - Backend: The `.env` file contains MongoDB URI, JWT secrets, etc.
-   - Frontend: The `.env` file specifies API URLs and other config
+   - Frontend: The `.env` file specifies API URLs, PayPal client ID, and other config. Example:
+     ```
+     VITE_PAYPAL_CLIENT_ID=your_paypal_client_id_here
+     ```
 
 ## Running in Production
 

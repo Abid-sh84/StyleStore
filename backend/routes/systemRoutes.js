@@ -4,6 +4,13 @@ import mongoose from 'mongoose';
 
 const router = express.Router();
 
+// Get PayPal client ID
+router.get('/config/paypal', (req, res) => {
+  const clientId = process.env.PAYPAL_ID ;
+  console.log("Returning PayPal client ID:", clientId);
+  res.json({ clientId });
+});
+
 router.get('/status', (req, res) => {
   const status = {
     server: 'online',

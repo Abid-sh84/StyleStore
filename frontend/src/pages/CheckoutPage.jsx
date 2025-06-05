@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { CreditCard, Truck, ArrowLeft } from 'lucide-react';
+import PayPalButton from '../components/payment/PayPalButton';
+import { createOrder, updateOrderToPaid } from '../services/orderService';
+import { systemService } from '../services/systemService';
 
 const CheckoutPage = () => {
   const { cart, clearCart } = useCart();
@@ -19,8 +22,7 @@ const CheckoutPage = () => {
     country: '',
     phone: ''
   });
-  
-  const [paymentMethod, setPaymentMethod] = useState('card');
+    const [paymentMethod, setPaymentMethod] = useState('cod');
   const [loading, setLoading] = useState(false);
   
   const shippingCost = cart.total >= 50 ? 0 : 5.99;
@@ -34,24 +36,98 @@ const CheckoutPage = () => {
       [name]: value
     }));
   };
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // This handler is only used for COD orders
+    if (paymentMethod !== 'cod') return;
+    
     setLoading(true);
     
     try {
-      // Simulate order processing
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Create order in backend
+      const orderData = {
+        orderItems: cart.items.map(item => ({
+          ...item,
+          product: item.id,
+        })),
+        shippingAddress: {
+          address: shippingDetails.address,
+          city: shippingDetails.city,
+          postalCode: shippingDetails.postalCode,
+          country: shippingDetails.country,
+        },
+        paymentMethod: 'Cash on Delivery',
+        itemsPrice: cart.total,
+        taxPrice: tax,
+        shippingPrice: shippingCost,
+        totalPrice: orderTotal,
+      };
       
-      // Clear cart and redirect to success page
-      clearCart();
-      navigate('/order-success');
+      try {
+        // Create the order in backend
+        const order = await createOrder(orderData);
+        clearCart();
+        // First navigate to success page
+        navigate('/order-success', { state: { orderId: order._id } });
+      } catch (orderError) {
+        console.error('Order creation failed:', orderError);
+        alert('There was a problem creating your order. Please try again.');
+      }
     } catch (error) {
       console.error('Checkout failed:', error);
     } finally {
       setLoading(false);
     }
+  };  const handlePayPalSuccess = async (paymentResult) => {
+    setLoading(true);
+    try {
+      // Step 1: Create order in backend
+      const orderData = {
+        orderItems: cart.items.map(item => ({
+          ...item,
+          product: item.id,
+        })),
+        shippingAddress: {
+          address: shippingDetails.address,
+          city: shippingDetails.city,
+          postalCode: shippingDetails.postalCode,
+          country: shippingDetails.country,
+        },
+        paymentMethod: 'PayPal',
+        itemsPrice: cart.total,
+        taxPrice: tax,
+        shippingPrice: shippingCost,
+        totalPrice: orderTotal,
+      };
+      
+      // Create the order
+      const order = await createOrder(orderData);
+      
+      // Step 2: Format PayPal result to match what backend expects
+      const formattedPaymentResult = {
+        id: paymentResult.id,
+        status: paymentResult.status,
+        update_time: paymentResult.update_time || paymentResult.create_time,
+        payer: {
+          email_address: paymentResult.payer?.email_address || paymentResult.payer?.email || '',
+        }
+      };
+      
+      // Step 3: Update order to paid status using the specific API endpoint
+      await updateOrderToPaid(order._id, formattedPaymentResult);
+      
+      // Clear the cart and navigate
+      clearCart();
+      navigate('/order-success', { state: { orderId: order._id } });
+    } catch (error) {
+      console.error('PayPal payment process failed:', error);
+      alert('There was a problem processing your payment. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
+    // No need for API testing
   
   if (cart.items.length === 0) {
     navigate('/cart');
@@ -194,18 +270,17 @@ const CheckoutPage = () => {
                 <CreditCard size={20} className="text-primary-500 mr-2" />
                 <h2 className="text-xl font-semibold">Payment Method</h2>
               </div>
-              
-              <div className="space-y-3">
+                <div className="space-y-3">
                 <label className="flex items-center p-3 border border-dark-600 rounded-md cursor-pointer hover:border-gray-500">
                   <input
                     type="radio"
                     name="paymentMethod"
-                    value="card"
-                    checked={paymentMethod === 'card'}
+                    value="cod"
+                    checked={paymentMethod === 'cod'}
                     onChange={(e) => setPaymentMethod(e.target.value)}
                     className="mr-3"
                   />
-                  <span>Credit/Debit Card</span>
+                  <span>Cash on Delivery (COD)</span>
                 </label>
                 
                 <label className="flex items-center p-3 border border-dark-600 rounded-md cursor-pointer hover:border-gray-500">
@@ -221,60 +296,42 @@ const CheckoutPage = () => {
                 </label>
               </div>
               
-              {paymentMethod === 'card' && (
-                <div className="mt-4 space-y-4">
-                  <div>
-                    <label htmlFor="cardNumber" className="form-label">Card Number</label>
-                    <input
-                      type="text"
-                      id="cardNumber"
-                      placeholder="1234 5678 9012 3456"
-                      className="form-input"
-                      required
-                    />
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="expiryDate" className="form-label">Expiry Date</label>
-                      <input
-                        type="text"
-                        id="expiryDate"
-                        placeholder="MM/YY"
-                        className="form-input"
-                        required
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="cvv" className="form-label">CVV</label>
-                      <input
-                        type="text"
-                        id="cvv"
-                        placeholder="123"
-                        className="form-input"
-                        required
-                      />
-                    </div>
-                  </div>
+              {paymentMethod === 'paypal' && (
+                <div className="mt-6 bg-dark-600 p-4 rounded-lg">
+                  <p className="text-sm text-gray-400 mb-4">
+                    You will be redirected to PayPal to complete your payment securely.
+                  </p>
+                  <PayPalButton
+                    amount={orderTotal}
+                    onSuccess={handlePayPalSuccess}
+                  />
+                </div>
+              )}
+              
+              {paymentMethod === 'cod' && (
+                <div className="mt-6 bg-dark-600 p-4 rounded-lg">
+                  <p className="text-sm text-gray-400">
+                    Pay with cash when your order is delivered. Please note that some locations may not be eligible for COD.
+                  </p>
                 </div>
               )}
             </div>
-            
-            <button 
-              type="submit"
-              disabled={loading}
-              className="btn-primary w-full"
-            >
-              {loading ? (
-                <span className="flex items-center justify-center">
-                  <span className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></span>
-                  Processing...
-                </span>
-              ) : (
-                `Pay ${orderTotal.toFixed(2)}`
-              )}
-            </button>
+              {paymentMethod === 'cod' && (
+              <button 
+                type="submit"
+                disabled={loading}
+                className="btn-primary w-full"
+              >
+                {loading ? (
+                  <span className="flex items-center justify-center">
+                    <span className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></span>
+                    Processing...
+                  </span>
+                ) : (
+                  `Place Order - ${orderTotal.toFixed(2)}`
+                )}
+              </button>
+            )}
           </form>
         </div>
         
