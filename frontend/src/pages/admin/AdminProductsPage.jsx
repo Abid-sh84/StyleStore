@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { getProducts, deleteProduct } from '../../services/productService';
 import Loader from '../../components/common/Loader';
-import { Pencil, Trash, Plus, XCircle } from 'lucide-react';
+import { Pencil, Trash, Plus, XCircle, ArrowLeft } from 'lucide-react';
 import ProductForm from '../../components/admin/ProductForm';
 
 const AdminProductsPage = () => {
@@ -70,23 +71,31 @@ const AdminProductsPage = () => {
       setProducts([savedProduct, ...products]);
     }
     setIsModalOpen(false);
-  };
-
-  if (loading) {
+  };  if (loading) {
     return (
-      <div className="container mx-auto px-4 py-24">
-        <h1 className="text-3xl font-bold mb-8">Product Management</h1>
+      <div className="container mx-auto px-4 pt-24">
+        <div className="flex items-center mb-8">
+          <Link to="/admin" className="flex items-center text-primary-400 hover:text-primary-500 mr-4">
+            <ArrowLeft size={20} className="mr-1" />
+            <span>Back to Dashboard</span>
+          </Link>
+          <h1 className="text-3xl font-bold">Product Management</h1>
+        </div>
         <div className="flex justify-center py-12">
           <Loader text="Loading products..." />
         </div>
       </div>
     );
-  }
-
-  if (error) {
+  }  if (error) {
     return (
-      <div className="container mx-auto px-4 py-24">
-        <h1 className="text-3xl font-bold mb-8">Product Management</h1>
+      <div className="container mx-auto px-4 pt-24">
+        <div className="flex items-center mb-8">
+          <Link to="/admin" className="flex items-center text-primary-400 hover:text-primary-500 mr-4">
+            <ArrowLeft size={20} className="mr-1" />
+            <span>Back to Dashboard</span>
+          </Link>
+          <h1 className="text-3xl font-bold">Product Management</h1>
+        </div>
         <div className="bg-red-900/30 border border-red-500 p-4 rounded-lg text-center">
           <p className="text-red-400">{error}</p>
           <button 
@@ -98,12 +107,16 @@ const AdminProductsPage = () => {
         </div>
       </div>
     );
-  }
-
-  return (
-    <div className="container mx-auto px-4 py-24">
+  }  return (
+    <div className="container mx-auto px-4 pt-24">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">Product Management</h1>
+        <div className="flex items-center">
+          <Link to="/admin" className="flex items-center text-primary-400 hover:text-primary-500 mr-4">
+            <ArrowLeft size={20} className="mr-1" />
+            <span>Back to Dashboard</span>
+          </Link>
+          <h1 className="text-3xl font-bold">Product Management</h1>
+        </div>
         <button className="btn-primary flex items-center" onClick={openAddModal}>
           <Plus size={18} className="mr-2" />
           Add New Product

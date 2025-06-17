@@ -12,6 +12,8 @@ import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
 import OrdersPage from './pages/OrdersPage';
 import AdminProductsPage from './pages/admin/AdminProductsPage';
+import AdminUsersPage from './pages/admin/AdminUsersPage';
+import AdminDashboard from './pages/admin/AdminDashboard';
 import ApiTestPage from './pages/ApiTestPage';
 import NotFoundPage from './pages/NotFoundPage';
 import ProtectedRoute from './components/common/ProtectedRoute';
@@ -47,9 +49,24 @@ function App() {
               <OrdersPage />
             </ProtectedRoute>
           } />
+          <Route path="/admin" element={
+            <AdminRoute>
+              <AdminDashboard />
+            </AdminRoute>
+          } />
           <Route path="/admin/products" element={
             <AdminRoute>
               <AdminProductsPage />
+            </AdminRoute>
+          } />
+          <Route path="/admin/users" element={
+            <AdminRoute>
+              <AdminUsersPage />
+            </AdminRoute>
+          } />
+          <Route path="/admin/dashboard" element={
+            <AdminRoute>
+              <AdminDashboard />
             </AdminRoute>
           } />
           <Route path="/api-test" element={<ApiTestPage />} />
