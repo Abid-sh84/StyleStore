@@ -156,17 +156,16 @@ const Navbar = () => {
                       role="menuitem"
                     >
                       My Orders
-                    </Link>
-                    {user.isAdmin && (
+                    </Link>                    {user.isAdmin && (
                       <Link 
-                        to="/admin/products" 
-                        className={`block px-4 py-2 text-sm hover:bg-dark-700 ${location === '/admin/products' ? 'bg-dark-700 text-primary-500' : 'text-primary-400'}`}
+                        to="/admin" 
+                        className={`block px-4 py-2 text-sm hover:bg-dark-700 ${location.startsWith('/admin') ? 'bg-dark-700 text-primary-500' : 'text-primary-400'}`}
                         onClick={() => setIsProfileOpen(false)}
                         role="menuitem"
                       >
                         <span className="flex items-center">
                           <Lock size={14} className="mr-1" />
-                          Admin: Products
+                          Go to Admin Panel
                         </span>
                       </Link>
                     )}
@@ -233,11 +232,10 @@ const Navbar = () => {
                   <User size={18} className="mr-2" />
                   My Profile
                 </Link>
-                <Link to="/orders" className="text-gray-300 py-2" onClick={toggleMenu}>My Orders</Link>
-                {user.isAdmin && (
-                  <Link to="/admin/products" className="text-primary-400 py-2 flex items-center" onClick={toggleMenu}>
+                <Link to="/orders" className="text-gray-300 py-2" onClick={toggleMenu}>My Orders</Link>                {user.isAdmin && (
+                  <Link to="/admin" className="text-primary-400 py-2 flex items-center" onClick={toggleMenu}>
                     <Lock size={16} className="mr-2" />
-                    Admin: Products
+                    Go to Admin Panel
                   </Link>
                 )}
                 {/* <Link to="/api-test" className="text-gray-300 py-2" onClick={toggleMenu}>API Test</Link> */}
