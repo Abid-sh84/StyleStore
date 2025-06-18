@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Users, ShoppingBag, Box, BarChart, Clipboard, Settings } from 'lucide-react';
 
 const AdminDashboard = () => {
-  // Admin menu items
+  // Admin menu items pg
   const adminMenuItems = [
     {
       title: 'Users',
@@ -56,9 +56,8 @@ const AdminDashboard = () => {
       </header>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {adminMenuItems.map((item, index) => {
-          // Check if the path is implemented
-          const isImplemented = ['/admin/users', '/admin/products'].includes(item.path);
+        {adminMenuItems.map((item, index) => {          // Check if the path is implemented
+          const isImplemented = ['/admin/users', '/admin/products', '/admin/orders'].includes(item.path);
           
           const content = (
             <div className="flex items-center">
