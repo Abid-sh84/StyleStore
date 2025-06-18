@@ -13,6 +13,7 @@ import ProfilePage from './pages/ProfilePage';
 import OrdersPage from './pages/OrdersPage';
 import AdminProductsPage from './pages/admin/AdminProductsPage';
 import AdminUsersPage from './pages/admin/AdminUsersPage';
+import AdminOrdersPage from './pages/admin/AdminOrdersPage';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import ApiTestPage from './pages/ApiTestPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -62,6 +63,11 @@ function App() {
           <Route path="/admin/users" element={
             <AdminRoute>
               <AdminUsersPage />
+            </AdminRoute>
+          } />
+          <Route path="/admin/orders" element={
+            <AdminRoute>
+              <AdminOrdersPage />
             </AdminRoute>
           } />
           <Route path="/admin/dashboard" element={
