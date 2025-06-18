@@ -56,7 +56,7 @@ export const getAllOrders = async () => {
   }
 };
 
-// Mark order as delivered (admin only)
+// Mark order as delivered to (admin only)
 export const updateOrderToDelivered = async (orderId) => {
   try {
     const response = await api.put(`/orders/${orderId}/deliver`);

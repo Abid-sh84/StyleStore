@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Users, ShoppingBag, Box, BarChart, Clipboard, Settings } from 'lucide-react';
 
 const AdminDashboard = () => {
-  // Admin menu items
+  // Admin menu items pg
   const adminMenuItems = [
     {
       title: 'Users',

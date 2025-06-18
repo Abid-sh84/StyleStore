@@ -4,7 +4,7 @@ import { getAllOrders, updateOrderToDelivered } from '../../services/orderServic
 import Loader from '../../components/common/Loader';
 import { Check, ArrowLeft, ExternalLink, Truck } from 'lucide-react';
 
-// Helper function to format date
+// Helper function to format date1
 const formatDate = (dateString) => {
   if (!dateString) return 'N/A';
   const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };

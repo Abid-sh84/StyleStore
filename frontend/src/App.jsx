@@ -21,7 +21,7 @@ import ProtectedRoute from './components/common/ProtectedRoute';
 import AdminRoute from './components/common/AdminRoute';
 import OrderSummaryPage from './pages/OrderSummaryPage';
 import OrderSuccessPage from './pages/OrderSuccessPage';
-
+//function
 function App() {
   return (
     <div className="flex flex-col min-h-screen">
