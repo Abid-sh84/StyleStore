@@ -141,5 +141,59 @@ const updateOrderToDelivered = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// @desc    Cancel an order
+// @route   PUT /api/orders/:id/cancel
+// @access  Private/Admin
+const cancelOrder = async (req, res) => {
+  try {
+    const order = await Order.findById(req.params.id);
+    
+    if (order) {
+      order.status = 'Cancelled';
+      order.cancelledAt = Date.now();
+      
+      const updatedOrder = await order.save();
+      
+      res.json(updatedOrder);
+    } else {
+      res.status(404).json({ message: 'Order not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// @desc    Update order status
+// @route   PUT /api/orders/:id/status
+// @access  Private/Admin
+const updateOrderStatus = async (req, res) => {
+  try {
+    const { status } = req.body;
+    const order = await Order.findById(req.params.id);
+    
+    if (order) {
+      order.status = status;
+      
+      const updatedOrder = await order.save();
+      
+      res.json(updatedOrder);
+    } else {
+      res.status(404).json({ message: 'Order not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 //export
-export { createOrder, getOrderById, updateOrderToPaid, getMyOrders, getOrders, updateOrderToDelivered };
+export { 
+  createOrder, 
+  getOrderById, 
+  updateOrderToPaid, 
+  getMyOrders, 
+  getOrders, 
+  updateOrderToDelivered,
+  cancelOrder,
+  updateOrderStatus
+};
