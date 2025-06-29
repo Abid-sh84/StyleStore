@@ -33,6 +33,17 @@ export const updateOrderToPaid = async (orderId, paymentResult) => {
   }
 };
 
+// Update order to delivered (admin only)
+export const updateOrderToDelivered = async (orderId) => {
+  try {
+    const response = await api.put(`/orders/${orderId}/deliver`);
+    return response.data;
+  } catch (error) {
+    console.error('Error marking order as delivered:', error);
+    throw error;
+  }
+};
+
 // Get logged in user's orders
 export const getUserOrders = async () => {
   try {
@@ -55,10 +66,13 @@ export const getOrders = async () => {
   }
 };
 
-// Update order status (admin)
-export const updateOrderStatus = async (orderId, statusUpdate) => {
+// Alias for getOrders for better naming
+export const getAllOrders = getOrders;
+
+// Update order status (admin only)
+export const updateOrderStatus = async (orderId, status) => {
   try {
-    const response = await api.put(`/orders/${orderId}/status`, statusUpdate);
+    const response = await api.put(`/orders/${orderId}/status`, typeof status === 'string' ? { status } : status);
     return response.data;
   } catch (error) {
     console.error('Error updating order status:', error);
@@ -73,17 +87,6 @@ export const cancelOrder = async (orderId) => {
     return response.data;
   } catch (error) {
     console.error('Error cancelling order:', error);
-    throw error;
-  }
-};
-
-// Update order status (admin only)
-export const updateOrderStatus = async (orderId, status) => {
-  try {
-    const response = await api.put(`/orders/${orderId}/status`, { status });
-    return response.data;
-  } catch (error) {
-    console.error('Error updating order status:', error);
     throw error;
   }
 };
