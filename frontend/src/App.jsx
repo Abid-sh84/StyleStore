@@ -1,5 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import HomePage from './pages/HomePage';
@@ -21,10 +23,12 @@ import ProtectedRoute from './components/common/ProtectedRoute';
 import AdminRoute from './components/common/AdminRoute';
 import OrderSummaryPage from './pages/OrderSummaryPage';
 import OrderSuccessPage from './pages/OrderSuccessPage';
-//function
+import AdminAnalyticsPage from './pages/admin/AdminAnalyticsPage';
+
 function App() {
   return (
     <div className="flex flex-col min-h-screen">
+      <ToastContainer />
       <Navbar />
       <main className="flex-grow">
         <Routes>
@@ -73,6 +77,11 @@ function App() {
           <Route path="/admin/dashboard" element={
             <AdminRoute>
               <AdminDashboard />
+            </AdminRoute>
+          } />
+          <Route path="/admin/analytics" element={
+            <AdminRoute>
+              <AdminAnalyticsPage />
             </AdminRoute>
           } />
           <Route path="/api-test" element={<ApiTestPage />} />

@@ -44,9 +44,8 @@ export const getUserOrders = async () => {
   }
 };
 
-// Admin functions
-// Get all orders (admin only)
-export const getAllOrders = async () => {
+// Get all orders (admin)
+export const getOrders = async () => {
   try {
     const response = await api.get('/orders');
     return response.data;
@@ -56,13 +55,13 @@ export const getAllOrders = async () => {
   }
 };
 
-// Mark order as delivered to (admin only)
-export const updateOrderToDelivered = async (orderId) => {
+// Update order status (admin)
+export const updateOrderStatus = async (orderId, statusUpdate) => {
   try {
-    const response = await api.put(`/orders/${orderId}/deliver`);
+    const response = await api.put(`/orders/${orderId}/status`, statusUpdate);
     return response.data;
   } catch (error) {
-    console.error('Error marking order as delivered:', error);
+    console.error('Error updating order status:', error);
     throw error;
   }
 };
