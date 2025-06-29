@@ -65,3 +65,25 @@ export const updateOrderStatus = async (orderId, statusUpdate) => {
     throw error;
   }
 };
+
+// Cancel an order (admin only)
+export const cancelOrder = async (orderId) => {
+  try {
+    const response = await api.put(`/orders/${orderId}/cancel`);
+    return response.data;
+  } catch (error) {
+    console.error('Error cancelling order:', error);
+    throw error;
+  }
+};
+
+// Update order status (admin only)
+export const updateOrderStatus = async (orderId, status) => {
+  try {
+    const response = await api.put(`/orders/${orderId}/status`, { status });
+    return response.data;
+  } catch (error) {
+    console.error('Error updating order status:', error);
+    throw error;
+  }
+};
