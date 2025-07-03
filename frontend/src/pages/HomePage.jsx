@@ -44,7 +44,7 @@ const HomePage = () => {
           </div>
           <div className="flex gap-4">
             <Link to="/products" className="btn-primary">
-              Shop Collection
+              Explore Foods
             </Link>
             <Link to="/products/new-arrivals" className="btn-outline">
               New Arrivals
@@ -59,53 +59,53 @@ const HomePage = () => {
           <h2 className="text-3xl font-bold text-center mb-12">Shop by Category</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Men Category */}
+            {/* Non veg */}
             <div className="relative group overflow-hidden rounded-lg h-96">
               <img 
-                src="https://images.pexels.com/photos/1656684/pexels-photo-1656684.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" 
-                alt="Men's T-shirts" 
+                src="https://i.pinimg.com/originals/eb/07/fb/eb07fbadd098d0c1b4455daae8025210.jpg" 
+                alt="Non veg" 
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-dark-900 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6">
-                <h3 className="text-2xl font-bold text-white mb-2">Men</h3>
-                <p className="text-gray-300 mb-4">Sleek designs for the modern man</p>
+                <h3 className="text-2xl font-bold text-white mb-2">Nonveg</h3>
+                <p className="text-gray-300 mb-4">We make food magic</p>
                 <Link to="/products/men" className="inline-flex items-center text-primary-400 hover:text-primary-300 transition-colors">
-                  Shop Now <ArrowRight size={16} className="ml-1" />
+                  Explore<ArrowRight size={16} className="ml-1" />
                 </Link>
               </div>
             </div>
             
-            {/* Women Category */}
+            {/* Veg */}
             <div className="relative group overflow-hidden rounded-lg h-96">
               <img 
-                src="https://images.pexels.com/photos/1126993/pexels-photo-1126993.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" 
-                alt="Women's T-shirts" 
+                src="https://cdn.apartmenttherapy.info/image/fetch/f_auto,q_auto:eco/https://storage.googleapis.com/gen-atmedia/3/2017/04/0ffafc36a752e3ac2601ae070b6162027a4b1be1.jpeg" 
+                alt="veg" 
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-dark-900 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6">
-                <h3 className="text-2xl font-bold text-white mb-2">Women</h3>
-                <p className="text-gray-300 mb-4">Elegance meets comfort</p>
+                <h3 className="text-2xl font-bold text-white mb-2">Veg</h3>
+                <p className="text-gray-300 mb-4">Good food,good mood</p>
                 <Link to="/products/women" className="inline-flex items-center text-primary-400 hover:text-primary-300 transition-colors">
-                  Shop Now <ArrowRight size={16} className="ml-1" />
+                  Explore <ArrowRight size={16} className="ml-1" />
                 </Link>
               </div>
             </div>
             
-            {/* Kids Category */}
+            {/* Chinese */}
             <div className="relative group overflow-hidden rounded-lg h-96">
               <img 
-                src="https://images.pexels.com/photos/3771679/pexels-photo-3771679.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" 
-                alt="Kids' T-shirts" 
+                src="https://ik.imagekit.io/shortpedia/Voices/wp-content/uploads/2021/10/chinese-food-1200x900@kohinoorjoy.jpg" 
+                alt="chinese" 
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-dark-900 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6">
-                <h3 className="text-2xl font-bold text-white mb-2">Kids</h3>
-                <p className="text-gray-300 mb-4">Playful styles for little ones</p>
+                <h3 className="text-2xl font-bold text-white mb-2">Chinese</h3>
+                <p className="text-gray-300 mb-4">It's food o'clock</p>
                 <Link to="/products/kids" className="inline-flex items-center text-primary-400 hover:text-primary-300 transition-colors">
-                  Shop Now <ArrowRight size={16} className="ml-1" />
+                  Explore<ArrowRight size={16} className="ml-1" />
                 </Link>
               </div>
             </div>
