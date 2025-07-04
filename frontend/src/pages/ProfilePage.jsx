@@ -144,17 +144,25 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold mb-8">My Account</h1>
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-amber-50 pt-16">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-orange-200 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-blob"></div>
+        <div className="absolute top-40 right-20 w-32 h-32 bg-yellow-200 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-20 left-1/4 w-32 h-32 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-blob animation-delay-4000"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 py-12 relative z-10">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-3xl font-bold mb-8 text-gray-900">My Account</h1>
         
         {/* Tab Navigation */}
-        <div className="flex border-b border-dark-500 mb-8">
+        <div className="flex border-b border-orange-200 mb-8 bg-white rounded-t-lg shadow-sm">
           <button
-            className={`py-2 px-4 font-medium ${
+            className={`py-4 px-6 font-medium transition-all duration-200 ${
               activeTab === 'profile'
-                ? 'text-primary-400 border-b-2 border-primary-400'
-                : 'text-gray-400 hover:text-gray-200'
+                ? 'text-orange-600 border-b-2 border-orange-500 bg-orange-50'
+                : 'text-gray-600 hover:text-orange-600 hover:bg-orange-50'
             }`}
             onClick={() => setActiveTab('profile')}
           >
@@ -164,10 +172,10 @@ const ProfilePage = () => {
             </div>
           </button>
           <button
-            className={`py-2 px-4 font-medium ${
+            className={`py-4 px-6 font-medium transition-all duration-200 ${
               activeTab === 'orders'
-                ? 'text-primary-400 border-b-2 border-primary-400'
-                : 'text-gray-400 hover:text-gray-200'
+                ? 'text-orange-600 border-b-2 border-orange-500 bg-orange-50'
+                : 'text-gray-600 hover:text-orange-600 hover:bg-orange-50'
             }`}
             onClick={() => setActiveTab('orders')}
           >
@@ -180,25 +188,25 @@ const ProfilePage = () => {
         
         {/* Alerts */}
         {error && (
-          <div className="bg-dark-600 border-l-4 border-red-500 text-red-400 p-4 mb-6 flex items-center">
+          <div className="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 mb-6 flex items-center rounded-r-lg shadow-sm">
             <AlertCircle className="mr-2" size={20} />
             <p>{error}</p>
           </div>
         )}
         
         {success && (
-          <div className="bg-dark-600 border-l-4 border-green-500 text-green-400 p-4 mb-6 flex items-center">
+          <div className="bg-green-50 border-l-4 border-green-500 text-green-700 p-4 mb-6 flex items-center rounded-r-lg shadow-sm">
             <p>{success}</p>
           </div>
         )}
         
         {/* Profile Tab Content */}
         {activeTab === 'profile' && (
-          <div className="bg-dark-700 rounded-lg shadow-lg p-8">
+          <div className="bg-white rounded-lg shadow-lg p-8 border border-orange-100">
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="col-span-2 md:col-span-1">
-                  <label htmlFor="name" className="block text-gray-300 font-medium mb-2">
+                  <label htmlFor="name" className="block text-gray-700 font-medium mb-2">
                     Full Name
                   </label>
                   <div className="relative">
@@ -211,14 +219,14 @@ const ProfilePage = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="block w-full pl-10 pr-3 py-2 bg-dark-600 border border-dark-500 rounded-md shadow-sm text-gray-200 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                      className="block w-full pl-10 pr-3 py-3 bg-white border border-orange-200 rounded-md shadow-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
                       required
                     />
                   </div>
                 </div>
                   
                 <div className="col-span-2 md:col-span-1">
-                  <label htmlFor="email" className="block text-gray-300 font-medium mb-2">
+                  <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
                     Email Address
                   </label>
                   <div className="relative">
@@ -231,14 +239,14 @@ const ProfilePage = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="block w-full pl-10 pr-3 py-2 bg-dark-600 border border-dark-500 rounded-md shadow-sm text-gray-200 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                      className="block w-full pl-10 pr-3 py-3 bg-white border border-orange-200 rounded-md shadow-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
                       required
                     />
                   </div>
                 </div>
                   
                 <div className="col-span-2 md:col-span-1">
-                  <label htmlFor="password" className="block text-gray-300 font-medium mb-2">
+                  <label htmlFor="password" className="block text-gray-700 font-medium mb-2">
                     Password (Leave blank to keep current)
                   </label>
                   <div className="relative">
@@ -251,24 +259,24 @@ const ProfilePage = () => {
                       name="password"
                       value={formData.password}
                       onChange={handleChange}
-                      className="block w-full pl-10 pr-10 py-2 bg-dark-600 border border-dark-500 rounded-md shadow-sm text-gray-200 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                      className="block w-full pl-10 pr-10 py-3 bg-white border border-orange-200 rounded-md shadow-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
                     />
                     <button
                       type="button"
-                      className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                      className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-orange-600"
                       onClick={() => setShowPassword(!showPassword)}
                     >
                       {showPassword ? (
-                        <EyeOff className="h-5 w-5 text-gray-400" />
+                        <EyeOff className="h-5 w-5" />
                       ) : (
-                        <Eye className="h-5 w-5 text-gray-400" />
+                        <Eye className="h-5 w-5" />
                       )}
                     </button>
                   </div>
                 </div>
                   
                 <div className="col-span-2 md:col-span-1">
-                  <label htmlFor="confirmPassword" className="block text-gray-300 font-medium mb-2">
+                  <label htmlFor="confirmPassword" className="block text-gray-700 font-medium mb-2">
                     Confirm Password
                   </label>
                   <div className="relative">
@@ -281,24 +289,24 @@ const ProfilePage = () => {
                       name="confirmPassword"
                       value={formData.confirmPassword}
                       onChange={handleChange}
-                      className="block w-full pl-10 pr-10 py-2 bg-dark-600 border border-dark-500 rounded-md shadow-sm text-gray-200 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                      className="block w-full pl-10 pr-10 py-3 bg-white border border-orange-200 rounded-md shadow-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
                     />
                     <button
                       type="button"
-                      className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                      className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-orange-600"
                       onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                     >
                       {showConfirmPassword ? (
-                        <EyeOff className="h-5 w-5 text-gray-400" />
+                        <EyeOff className="h-5 w-5" />
                       ) : (
-                        <Eye className="h-5 w-5 text-gray-400" />
+                        <Eye className="h-5 w-5" />
                       )}
                     </button>
                   </div>
                 </div>
                   
                 <div className="col-span-2 md:col-span-1">
-                  <label htmlFor="phone" className="block text-gray-300 font-medium mb-2">
+                  <label htmlFor="phone" className="block text-gray-700 font-medium mb-2">
                     Phone Number
                   </label>
                   <div className="relative">
@@ -311,13 +319,13 @@ const ProfilePage = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="block w-full pl-10 pr-3 py-2 bg-dark-600 border border-dark-500 rounded-md shadow-sm text-gray-200 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                      className="block w-full pl-10 pr-3 py-3 bg-white border border-orange-200 rounded-md shadow-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
                     />
                   </div>
                 </div>
                   
                 <div className="col-span-2">
-                  <label htmlFor="address" className="block text-gray-300 font-medium mb-2">
+                  <label htmlFor="address" className="block text-gray-700 font-medium mb-2">
                     Address
                   </label>
                   <div className="relative">
@@ -330,7 +338,7 @@ const ProfilePage = () => {
                       value={formData.address}
                       onChange={handleChange}
                       rows="3"
-                      className="block w-full pl-10 pr-3 py-2 bg-dark-600 border border-dark-500 rounded-md shadow-sm text-gray-200 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                      className="block w-full pl-10 pr-3 py-3 bg-white border border-orange-200 rounded-md shadow-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
                     ></textarea>
                   </div>
                 </div>
@@ -340,7 +348,7 @@ const ProfilePage = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full flex justify-center items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:ring-offset-dark-800"
+                  className="w-full flex justify-center items-center px-4 py-3 border border-transparent rounded-md shadow-sm text-white bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-all duration-300 hover:shadow-lg font-medium"
                 >
                   {loading ? (
                     <span className="flex items-center">
@@ -364,9 +372,9 @@ const ProfilePage = () => {
         
         {/* Orders Tab Content */}
         {activeTab === 'orders' && (
-          <div className="bg-dark-700 rounded-lg shadow-lg overflow-hidden">
-            <div className="p-6 border-b border-dark-600">
-              <h2 className="text-xl font-bold flex items-center">
+          <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-orange-100">
+            <div className="p-6 border-b border-orange-200 bg-gradient-to-r from-orange-50 to-amber-50">
+              <h2 className="text-xl font-bold flex items-center text-gray-900">
                 <Package className="mr-2" size={20} />
                 My Orders
               </h2>
@@ -374,52 +382,52 @@ const ProfilePage = () => {
             
             {ordersLoading ? (
               <div className="flex justify-center items-center p-12">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-500"></div>
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
               </div>
             ) : ordersError ? (
               <div className="p-8 text-center">
-                <div className="text-red-400 mb-4">{ordersError}</div>
+                <div className="text-red-600 mb-4">{ordersError}</div>
                 <button 
                   onClick={fetchOrders} 
-                  className="btn-secondary"
+                  className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg transition-colors"
                 >
                   Try Again
                 </button>
               </div>
             ) : orders.length === 0 ? (
               <div className="p-8 text-center">
-                <p className="text-gray-400 mb-6">You haven't placed any orders yet.</p>
-                <Link to="/products" className="btn-primary inline-block">
+                <p className="text-gray-600 mb-6">You haven't placed any orders yet.</p>
+                <Link to="/products" className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg inline-block">
                   Start Shopping
                 </Link>
               </div>
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full">
-                  <thead className="bg-dark-600">
+                  <thead className="bg-orange-50">
                     <tr>
-                      <th className="text-left p-4">Order ID</th>
-                      <th className="text-left p-4">Date</th>
-                      <th className="text-left p-4">Total</th>
-                      <th className="text-left p-4">Status</th>
-                      <th className="text-center p-4">Actions</th>
+                      <th className="text-left p-4 text-gray-800 font-medium">Order ID</th>
+                      <th className="text-left p-4 text-gray-800 font-medium">Date</th>
+                      <th className="text-left p-4 text-gray-800 font-medium">Total</th>
+                      <th className="text-left p-4 text-gray-800 font-medium">Status</th>
+                      <th className="text-center p-4 text-gray-800 font-medium">Actions</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-dark-600">
+                  <tbody className="divide-y divide-orange-100">
                     {orders.map(order => (
-                      <tr key={order._id} className="hover:bg-dark-600/50">
+                      <tr key={order._id} className="hover:bg-orange-50/50 transition-colors">
                         <td className="p-4">
-                          <span className="font-mono text-sm">
+                          <span className="font-mono text-sm text-gray-800">
                             #{order._id.substring(order._id.length - 6).toUpperCase()}
                           </span>
                         </td>
                         <td className="p-4">
-                          <div className="flex items-center">
-                            <Calendar size={16} className="mr-2 text-gray-400" />
+                          <div className="flex items-center text-gray-700">
+                            <Calendar size={16} className="mr-2 text-gray-500" />
                             <span>{formatDate(order.createdAt)}</span>
                           </div>
                         </td>
-                        <td className="p-4 font-medium">${order.totalPrice?.toFixed(2)}</td>
+                        <td className="p-4 font-medium text-gray-900">${order.totalPrice?.toFixed(2)}</td>
                         <td className="p-4">
                           {renderOrderStatus(order.isPaid, order.isDelivered)}
                         </td>
@@ -427,7 +435,7 @@ const ProfilePage = () => {
                           <div className="flex justify-center">
                             <button
                               onClick={() => navigate(`/order-summary/${order._id}`)}
-                              className="p-2 text-primary-400 hover:text-primary-300"
+                              className="p-2 text-orange-600 hover:text-orange-800 hover:bg-orange-100 rounded-lg transition-colors"
                               title="View Order Details"
                             >
                               <Eye size={18} />
@@ -444,17 +452,17 @@ const ProfilePage = () => {
         )}
         
         {/* Account Deletion (could be expanded in the future) */}
-        <div className="mt-8 p-6 bg-dark-700 rounded-lg border border-dark-600">
-          <h3 className="text-lg font-medium mb-4">Account Settings</h3>
+        <div className="mt-8 p-6 bg-white rounded-lg border border-red-200 shadow-sm">
+          <h3 className="text-lg font-medium mb-4 text-gray-900">Account Settings</h3>
           <div className="flex justify-between items-center">
             <div>
-              <h4 className="text-red-400 font-medium">Delete Account</h4>
-              <p className="text-sm text-gray-400">
+              <h4 className="text-red-600 font-medium">Delete Account</h4>
+              <p className="text-sm text-gray-600">
                 Permanently delete your account and all associated data
               </p>
             </div>
             <button 
-              className="px-4 py-2 border border-red-500 text-red-400 rounded-md hover:bg-red-500/10"
+              className="px-4 py-2 border border-red-500 text-red-600 rounded-md hover:bg-red-50 transition-colors flex items-center"
               onClick={() => {
                 if (window.confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
                   // Account deletion logic would go here
@@ -465,6 +473,7 @@ const ProfilePage = () => {
               <Trash2 size={18} />
             </button>
           </div>
+        </div>
         </div>
       </div>
     </div>

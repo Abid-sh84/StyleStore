@@ -29,12 +29,15 @@ export const CartProvider = ({ children }) => {
   }, [cart]);
 
   const addToCart = (product, quantity = 1, size = 'M', color = 'default') => {
+    console.log('CartContext addToCart called with:', { product, quantity, size, color });
+    
     if (!product) {
       console.error('Attempted to add undefined product to cart');
       return;
     }
     
     setCart(prevCart => {
+      console.log('Previous cart:', prevCart);
       // Ensure prevCart is properly structured
       const items = Array.isArray(prevCart.items) ? prevCart.items : [];
       
@@ -89,7 +92,9 @@ export const CartProvider = ({ children }) => {
         0
       );
 
-      return { items: updatedItems, total };
+      const newCart = { items: updatedItems, total };
+      console.log('New cart state:', newCart);
+      return newCart;
     });
   };
 

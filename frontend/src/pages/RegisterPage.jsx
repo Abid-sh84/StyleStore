@@ -43,13 +43,21 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-24">
-      <div className="max-w-md mx-auto">
-        <div className="bg-dark-700 rounded-lg shadow-lg p-8">
-          <h1 className="text-2xl font-bold text-center mb-6">Create an Account</h1>
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-amber-50 pt-16">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-orange-200 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-blob"></div>
+        <div className="absolute top-40 right-20 w-32 h-32 bg-yellow-200 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-20 left-1/4 w-32 h-32 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-blob animation-delay-4000"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 py-24 relative z-10">
+        <div className="max-w-md mx-auto">
+          <div className="bg-white rounded-lg shadow-lg p-8 border border-orange-100">
+            <h1 className="text-2xl font-bold text-center mb-6 text-gray-900">Create an Account</h1>
           
           {error && (
-            <div className="bg-red-900/30 border border-red-500 text-red-300 px-4 py-3 rounded mb-6 flex items-start">
+            <div className="bg-red-50 border border-red-500 text-red-700 px-4 py-3 rounded mb-6 flex items-start">
               <AlertCircle size={20} className="mr-2 flex-shrink-0 mt-0.5" />
               <span>{error}</span>
             </div>
@@ -57,7 +65,7 @@ const RegisterPage = () => {
           
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label htmlFor="name" className="form-label">Full Name</label>
+              <label htmlFor="name" className="block text-gray-700 font-medium mb-2">Full Name</label>
               <div className="relative">
                 <input
                   id="name"
@@ -65,7 +73,7 @@ const RegisterPage = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="form-input pl-10"
+                  className="block w-full pl-10 pr-3 py-3 bg-white border border-orange-200 rounded-md shadow-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
                   placeholder="John Doe"
                 />
                 <User size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
@@ -73,7 +81,7 @@ const RegisterPage = () => {
             </div>
             
             <div className="mb-4">
-              <label htmlFor="email" className="form-label">Email</label>
+              <label htmlFor="email" className="block text-gray-700 font-medium mb-2">Email</label>
               <div className="relative">
                 <input
                   id="email"
@@ -81,7 +89,7 @@ const RegisterPage = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="form-input pl-10"
+                  className="block w-full pl-10 pr-3 py-3 bg-white border border-orange-200 rounded-md shadow-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
                   placeholder="your.email@example.com"
                 />
                 <Mail size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
@@ -89,7 +97,7 @@ const RegisterPage = () => {
             </div>
             
             <div className="mb-4">
-              <label htmlFor="password" className="form-label">Password</label>
+              <label htmlFor="password" className="block text-gray-700 font-medium mb-2">Password</label>
               <div className="relative">
                 <input
                   id="password"
@@ -97,7 +105,7 @@ const RegisterPage = () => {
                   value={formData.password}
                   onChange={handleChange}
                   required
-                  className="form-input pl-10"
+                  className="block w-full pl-10 pr-3 py-3 bg-white border border-orange-200 rounded-md shadow-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
                   placeholder="••••••••"
                   minLength={6}
                 />
@@ -106,7 +114,7 @@ const RegisterPage = () => {
             </div>
             
             <div className="mb-6">
-              <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
+              <label htmlFor="confirmPassword" className="block text-gray-700 font-medium mb-2">Confirm Password</label>
               <div className="relative">
                 <input
                   id="confirmPassword"
@@ -114,7 +122,7 @@ const RegisterPage = () => {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   required
-                  className="form-input pl-10"
+                  className="block w-full pl-10 pr-3 py-3 bg-white border border-orange-200 rounded-md shadow-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
                   placeholder="••••••••"
                 />
                 <Lock size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
@@ -124,7 +132,7 @@ const RegisterPage = () => {
             <button
               type="submit"
               disabled={loading}
-              className="btn-primary w-full flex justify-center items-center"
+              className="w-full flex justify-center items-center px-4 py-3 border border-transparent rounded-md shadow-sm text-white bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-all duration-300 hover:shadow-lg font-medium"
             >
               {loading ? (
                 <span className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></span>
@@ -138,12 +146,13 @@ const RegisterPage = () => {
           </form>
           
           <div className="mt-6 text-center">
-            <p className="text-gray-400">
+            <p className="text-gray-600">
               Already have an account?
-              <Link to="/login" className="text-primary-400 hover:text-primary-300 ml-1">
+              <Link to="/login" className="text-orange-600 hover:text-orange-700 ml-1 font-medium">
                 Login
               </Link>
             </p>
+          </div>
           </div>
         </div>
       </div>

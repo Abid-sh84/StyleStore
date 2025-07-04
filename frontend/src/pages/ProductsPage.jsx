@@ -295,137 +295,98 @@ const ProductsPage = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-24 bg-gradient-to-br from-orange-50 via-white to-orange-100 min-h-screen">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2 text-gray-900">
-          {category ? `${category.charAt(0).toUpperCase() + category.slice(1)} Dishes` : 'All Dishes'}
-        </h1>
-        <p className="text-gray-600">
-          {searchQuery 
-            ? `Search results for "${searchQuery}"` 
-            : `Discover our delicious collection of ${category ? category : 'food'} dishes.`}
-        </p>
-      </div>
-
-      <div className="flex flex-col lg:flex-row gap-8">
-        {/* Mobile filters toggle */}
-        <button 
-          className="lg:hidden flex items-center justify-center w-full py-2 px-4 bg-white border border-orange-200 rounded-md mb-4 text-gray-700 hover:bg-orange-50"
-          onClick={toggleFilters}
-        >
-          <SlidersHorizontal size={18} className="mr-2" />
-          {showFilters ? 'Hide Filters' : 'Show Filters'}
-          <ChevronDown size={18} className={`ml-2 transition-transform ${showFilters ? 'rotate-180' : ''}`} />
-        </button>
-
-        {/* Filters sidebar */}
-        <div className={`lg:w-1/4 ${showFilters ? 'block' : 'hidden lg:block'}`}>
-          <div className="bg-white rounded-lg p-6 sticky top-24 shadow-lg border border-orange-100">
-            <h2 className="text-xl font-semibold mb-6 text-gray-900">Filters</h2>
-            
-            {/* Price Range */}
-            <div className="mb-6">
-              <h3 className="font-medium mb-3 text-gray-800">Price Range</h3>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-gray-600">${filters.price[0]}</span>
-                <span className="text-gray-600">${filters.price[1]}</span>
-              </div>
-              <input 
-                type="range" 
-                min="0" 
-                max="50" 
-                value={filters.price[1]} 
-                onChange={(e) => setFilters(prev => ({ ...prev, price: [prev.price[0], parseInt(e.target.value)] }))}
-                className="w-full h-2 bg-orange-200 rounded-lg appearance-none cursor-pointer slider"
-              />
-            </div>
-            
-            {/* Spice Level */}
-            <div className="mb-6">
-              <h3 className="font-medium mb-3 text-gray-800">Spice Level</h3>
-              <div className="flex flex-wrap gap-2">
-                {allSpiceLevels.map(spiceLevel => (
-                  <button
-                    key={spiceLevel}
-                    onClick={() => toggleSpiceLevelFilter(spiceLevel)}
-                    className={`px-3 py-1 text-sm rounded-md border transition-colors ${
-                      filters.spiceLevel.includes(spiceLevel) 
-                        ? 'bg-orange-500 border-orange-500 text-white' 
-                        : 'bg-white border-orange-200 text-gray-700 hover:border-orange-400 hover:bg-orange-50'
-                    }`}
-                  >
-                    {spiceLevel}
-                  </button>
-                ))}
-              </div>
-            </div>
-            
-            {/* Restaurants */}
-            <div className="mb-6">
-              <h3 className="font-medium mb-3 text-gray-800">Restaurants</h3>
-              <div className="flex flex-wrap gap-2">
-                {allRestaurants.map(restaurant => (
-                  <button
-                    key={restaurant}
-                    onClick={() => toggleRestaurantFilter(restaurant)}
-                    className={`px-3 py-1 text-sm rounded-md border transition-colors ${
-                      filters.restaurants.includes(restaurant) 
-                        ? 'bg-orange-500 border-orange-500 text-white' 
-                        : 'bg-white border-orange-200 text-gray-700 hover:border-orange-400 hover:bg-orange-50'
-                    }`}
-                  >
-                    {restaurant}
-                  </button>
-                ))}
-              </div>
-            </div>
-            
-            {/* Reset Filters */}
-            <button 
-              onClick={() => setFilters({
-                price: [0, 50],
-                spiceLevel: [],
-                restaurants: [],
-                sort: 'newest'
-              })}
-              className="w-full py-2 text-sm text-orange-600 hover:text-orange-700 font-medium"
-            >
-              Reset All Filters
-            </button>
-          </div>
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-100">
+      <div className="container mx-auto px-4 py-24">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold mb-2 text-gray-900">
+            {category ? `${category.charAt(0).toUpperCase() + category.slice(1)} Dishes` : 'All Dishes'}
+          </h1>
+          <p className="text-gray-600">
+            {searchQuery 
+              ? `Search results for "${searchQuery}"` 
+              : `Discover our delicious collection of ${category ? category : 'food'} dishes.`}
+          </p>
         </div>
 
-        {/* Product grid */}
-        <div className="lg:w-3/4">
-          {/* Sort options */}
-          <div className="flex justify-between items-center mb-6">
-            <p className="text-gray-600">{products.length} dishes</p>
-            <div className="flex items-center">
-              <label htmlFor="sort" className="mr-2 text-sm text-gray-600">Sort by:</label>
-              <select 
-                id="sort" 
-                value={filters.sort}
-                onChange={handleSortChange}
-                className="w-full px-4 py-2 rounded-md bg-white border border-orange-200 text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm py-1 px-2 w-40"
-              >
-                <option value="newest">Newest</option>
-                <option value="price-low-high">Price: Low to High</option>
-                <option value="price-high-low">Price: High to Low</option>
-                <option value="name-a-z">Name: A to Z</option>
-                <option value="name-z-a">Name: Z to A</option>
-              </select>
-            </div>
-          </div>
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Mobile filters toggle */}
+          <button 
+            className="lg:hidden flex items-center justify-center w-full py-3 px-4 bg-white border border-orange-200 rounded-xl mb-4 text-gray-700 hover:bg-orange-50 transition-colors shadow-sm"
+            onClick={toggleFilters}
+          >
+            <SlidersHorizontal size={18} className="mr-2" />
+            {showFilters ? 'Hide Filters' : 'Show Filters'}
+            <ChevronDown size={18} className={`ml-2 transition-transform ${showFilters ? 'rotate-180' : ''}`} />
+          </button>
 
-          {loading ? (
-            <div className="flex justify-center items-center py-16">
-              <Loader size="lg" text="Loading products..." />
-            </div>
-          ) : products.length === 0 ? (
-            <div className="bg-white rounded-lg p-8 text-center shadow-lg border border-orange-100">
-              <Search size={48} className="mx-auto mb-4 text-gray-400" />
-              <h3 className="text-xl font-medium mb-2 text-gray-900">No dishes found</h3>
-              <p className="text-gray-600 mb-4">Try adjusting your filters or search criteria.</p>
+          {/* Filters sidebar */}
+          <div className={`lg:w-1/4 ${showFilters ? 'block' : 'hidden lg:block'}`}>
+            <div className="bg-white rounded-2xl p-6 sticky top-24 shadow-xl border border-orange-100">
+              <h2 className="text-xl font-bold mb-6 text-gray-900">Filters</h2>
+              
+              {/* Price Range */}
+              <div className="mb-6">
+                <h3 className="font-semibold mb-3 text-gray-800">Price Range</h3>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-gray-600 font-medium">${filters.price[0]}</span>
+                  <span className="text-gray-600 font-medium">${filters.price[1]}</span>
+                </div>
+                <div className="relative">
+                  <input 
+                    type="range" 
+                    min="0" 
+                    max="50" 
+                    value={filters.price[1]} 
+                    onChange={(e) => setFilters(prev => ({ ...prev, price: [prev.price[0], parseInt(e.target.value)] }))}
+                    className="w-full h-2 bg-orange-200 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    style={{
+                      background: `linear-gradient(to right, #fb923c 0%, #fb923c ${(filters.price[1]/50)*100}%, #fed7aa ${(filters.price[1]/50)*100}%, #fed7aa 100%)`
+                    }}
+                  />
+                </div>
+              </div>
+              
+              {/* Spice Level */}
+              <div className="mb-6">
+                <h3 className="font-semibold mb-3 text-gray-800">Spice Level</h3>
+                <div className="flex flex-wrap gap-2">
+                  {allSpiceLevels.map(spiceLevel => (
+                    <button
+                      key={spiceLevel}
+                      onClick={() => toggleSpiceLevelFilter(spiceLevel)}
+                      className={`px-4 py-2 text-sm font-medium rounded-xl border transition-all duration-200 ${
+                        filters.spiceLevel.includes(spiceLevel) 
+                          ? 'bg-orange-500 border-orange-500 text-white shadow-lg transform scale-105' 
+                          : 'bg-white border-orange-200 text-gray-700 hover:border-orange-400 hover:bg-orange-50 hover:shadow-md'
+                      }`}
+                    >
+                      {spiceLevel}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Restaurants */}
+              <div className="mb-6">
+                <h3 className="font-semibold mb-3 text-gray-800">Restaurants</h3>
+                <div className="space-y-2">
+                  {allRestaurants.map(restaurant => (
+                    <button
+                      key={restaurant}
+                      onClick={() => toggleRestaurantFilter(restaurant)}
+                      className={`w-full px-4 py-2 text-sm font-medium rounded-xl border transition-all duration-200 text-left ${
+                        filters.restaurants.includes(restaurant) 
+                          ? 'bg-orange-500 border-orange-500 text-white shadow-lg' 
+                          : 'bg-white border-orange-200 text-gray-700 hover:border-orange-400 hover:bg-orange-50 hover:shadow-md'
+                      }`}
+                    >
+                      {restaurant}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Reset Filters */}
               <button 
                 onClick={() => setFilters({
                   price: [0, 50],
@@ -433,18 +394,66 @@ const ProductsPage = () => {
                   restaurants: [],
                   sort: 'newest'
                 })}
-                className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
+                className="w-full py-3 text-sm text-orange-600 hover:text-orange-700 font-semibold hover:bg-orange-50 rounded-xl transition-colors"
               >
-                Reset Filters
+                Reset All Filters
               </button>
             </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {products.map(product => (
-                <ProductCard key={product._id} product={product} />
-              ))}
+          </div>
+
+          {/* Product grid */}
+          <div className="lg:w-3/4">
+            {/* Sort options */}
+            <div className="flex justify-between items-center mb-6 bg-white p-4 rounded-xl shadow-sm border border-orange-100">
+              <p className="text-gray-700 font-medium">{products.length} dishes found</p>
+              <div className="flex items-center">
+                <label htmlFor="sort" className="mr-3 text-sm text-gray-600 font-medium">Sort by:</label>
+                <select 
+                  id="sort" 
+                  value={filters.sort}
+                  onChange={handleSortChange}
+                  className="px-4 py-2 rounded-xl bg-white border border-orange-200 text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm font-medium min-w-[160px] cursor-pointer"
+                >
+                  <option value="newest">Newest</option>
+                  <option value="price-low-high">Price: Low to High</option>
+                  <option value="price-high-low">Price: High to Low</option>
+                  <option value="name-a-z">Name: A to Z</option>
+                  <option value="name-z-a">Name: Z to A</option>
+                </select>
+              </div>
             </div>
-          )}
+
+            {loading ? (
+              <div className="flex justify-center items-center py-16">
+                <Loader size="lg" text="Loading delicious dishes..." />
+              </div>
+            ) : products.length === 0 ? (
+              <div className="bg-white rounded-2xl p-12 text-center shadow-xl border border-orange-100">
+                <div className="bg-orange-100 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Search size={48} className="text-orange-500" />
+                </div>
+                <h3 className="text-2xl font-bold mb-3 text-gray-900">No dishes found</h3>
+                <p className="text-gray-600 mb-6 max-w-md mx-auto">We couldn't find any dishes matching your criteria. Try adjusting your filters or search terms.</p>
+                <button 
+                  onClick={() => setFilters({
+                    price: [0, 50],
+                    spiceLevel: [],
+                    restaurants: [],
+                    sort: 'newest'
+                  })}
+                  className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-3 rounded-xl font-bold transition-all duration-300 hover:scale-105 shadow-lg"
+                >
+                  Reset All Filters
+                </button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {products.map(product => (
+                  <ProductCard key={product._id} product={product} />
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
