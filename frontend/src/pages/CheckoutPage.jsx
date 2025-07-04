@@ -135,31 +135,39 @@ const CheckoutPage = () => {
   }
   
   return (
-    <div className="container mx-auto px-4 py-24">
-      <button 
-        onClick={() => navigate('/cart')} 
-        className="flex items-center text-primary-400 hover:text-primary-300 mb-6"
-      >
-        <ArrowLeft size={18} className="mr-2" />
-        Back to Cart
-      </button>
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-amber-50 pt-16">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-orange-200 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-blob"></div>
+        <div className="absolute top-40 right-20 w-32 h-32 bg-yellow-200 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-20 left-1/4 w-32 h-32 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-blob animation-delay-4000"></div>
+      </div>
       
-      <h1 className="text-3xl font-bold mb-8">Checkout</h1>
+      <div className="container mx-auto px-4 py-24 relative z-10">
+        <button 
+          onClick={() => navigate('/cart')} 
+          className="flex items-center text-orange-600 hover:text-orange-700 mb-6 font-medium"
+        >
+          <ArrowLeft size={18} className="mr-2" />
+          Back to Cart
+        </button>
+        
+        <h1 className="text-3xl font-bold mb-8 text-gray-900">Checkout</h1>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Checkout Form */}
         <div>
           <form onSubmit={handleSubmit}>
             {/* Shipping Information */}
-            <div className="bg-dark-700 rounded-lg p-6 mb-6">
+            <div className="bg-white rounded-lg p-6 mb-6 shadow-lg border border-orange-100">
               <div className="flex items-center mb-4">
-                <Truck size={20} className="text-primary-500 mr-2" />
-                <h2 className="text-xl font-semibold">Shipping Information</h2>
+                <Truck size={20} className="text-orange-600 mr-2" />
+                <h2 className="text-xl font-semibold text-gray-900">Shipping Information</h2>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="firstName" className="form-label">First Name</label>
+                  <label htmlFor="firstName" className="block text-gray-700 font-medium mb-2">First Name</label>
                   <input
                     type="text"
                     id="firstName"
@@ -167,12 +175,12 @@ const CheckoutPage = () => {
                     value={shippingDetails.firstName}
                     onChange={handleInputChange}
                     required
-                    className="form-input"
+                    className="block w-full px-3 py-3 bg-white border border-orange-200 rounded-md shadow-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="lastName" className="form-label">Last Name</label>
+                  <label htmlFor="lastName" className="block text-gray-700 font-medium mb-2">Last Name</label>
                   <input
                     type="text"
                     id="lastName"
@@ -180,12 +188,12 @@ const CheckoutPage = () => {
                     value={shippingDetails.lastName}
                     onChange={handleInputChange}
                     required
-                    className="form-input"
+                    className="block w-full px-3 py-3 bg-white border border-orange-200 rounded-md shadow-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
                   />
                 </div>
                 
                 <div className="md:col-span-2">
-                  <label htmlFor="address" className="form-label">Street Address</label>
+                  <label htmlFor="address" className="block text-gray-700 font-medium mb-2">Street Address</label>
                   <input
                     type="text"
                     id="address"
@@ -193,12 +201,12 @@ const CheckoutPage = () => {
                     value={shippingDetails.address}
                     onChange={handleInputChange}
                     required
-                    className="form-input"
+                    className="block w-full px-3 py-3 bg-white border border-orange-200 rounded-md shadow-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="city" className="form-label">City</label>
+                  <label htmlFor="city" className="block text-gray-700 font-medium mb-2">City</label>
                   <input
                     type="text"
                     id="city"
@@ -206,12 +214,12 @@ const CheckoutPage = () => {
                     value={shippingDetails.city}
                     onChange={handleInputChange}
                     required
-                    className="form-input"
+                    className="block w-full px-3 py-3 bg-white border border-orange-200 rounded-md shadow-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="state" className="form-label">State</label>
+                  <label htmlFor="state" className="block text-gray-700 font-medium mb-2">State</label>
                   <input
                     type="text"
                     id="state"
@@ -219,12 +227,12 @@ const CheckoutPage = () => {
                     value={shippingDetails.state}
                     onChange={handleInputChange}
                     required
-                    className="form-input"
+                    className="block w-full px-3 py-3 bg-white border border-orange-200 rounded-md shadow-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="postalCode" className="form-label">Postal Code</label>
+                  <label htmlFor="postalCode" className="block text-gray-700 font-medium mb-2">Postal Code</label>
                   <input
                     type="text"
                     id="postalCode"
@@ -232,12 +240,12 @@ const CheckoutPage = () => {
                     value={shippingDetails.postalCode}
                     onChange={handleInputChange}
                     required
-                    className="form-input"
+                    className="block w-full px-3 py-3 bg-white border border-orange-200 rounded-md shadow-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="country" className="form-label">Country</label>
+                  <label htmlFor="country" className="block text-gray-700 font-medium mb-2">Country</label>
                   <input
                     type="text"
                     id="country"
@@ -245,12 +253,12 @@ const CheckoutPage = () => {
                     value={shippingDetails.country}
                     onChange={handleInputChange}
                     required
-                    className="form-input"
+                    className="block w-full px-3 py-3 bg-white border border-orange-200 rounded-md shadow-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
                   />
                 </div>
                 
                 <div className="md:col-span-2">
-                  <label htmlFor="phone" className="form-label">Phone Number</label>
+                  <label htmlFor="phone" className="block text-gray-700 font-medium mb-2">Phone Number</label>
                   <input
                     type="tel"
                     id="phone"
@@ -258,47 +266,47 @@ const CheckoutPage = () => {
                     value={shippingDetails.phone}
                     onChange={handleInputChange}
                     required
-                    className="form-input"
+                    className="block w-full px-3 py-3 bg-white border border-orange-200 rounded-md shadow-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
                   />
                 </div>
               </div>
             </div>
             
             {/* Payment Method */}
-            <div className="bg-dark-700 rounded-lg p-6 mb-6">
+            <div className="bg-white rounded-lg p-6 mb-6 shadow-lg border border-orange-100">
               <div className="flex items-center mb-4">
-                <CreditCard size={20} className="text-primary-500 mr-2" />
-                <h2 className="text-xl font-semibold">Payment Method</h2>
+                <CreditCard size={20} className="text-orange-600 mr-2" />
+                <h2 className="text-xl font-semibold text-gray-900">Payment Method</h2>
               </div>
                 <div className="space-y-3">
-                <label className="flex items-center p-3 border border-dark-600 rounded-md cursor-pointer hover:border-gray-500">
+                <label className="flex items-center p-3 border border-orange-200 rounded-md cursor-pointer hover:border-orange-400 hover:bg-orange-50 transition-colors">
                   <input
                     type="radio"
                     name="paymentMethod"
                     value="cod"
                     checked={paymentMethod === 'cod'}
                     onChange={(e) => setPaymentMethod(e.target.value)}
-                    className="mr-3"
+                    className="mr-3 text-orange-600 focus:ring-orange-500"
                   />
-                  <span>Cash on Delivery (COD)</span>
+                  <span className="text-gray-900">Cash on Delivery (COD)</span>
                 </label>
                 
-                <label className="flex items-center p-3 border border-dark-600 rounded-md cursor-pointer hover:border-gray-500">
+                <label className="flex items-center p-3 border border-orange-200 rounded-md cursor-pointer hover:border-orange-400 hover:bg-orange-50 transition-colors">
                   <input
                     type="radio"
                     name="paymentMethod"
                     value="paypal"
                     checked={paymentMethod === 'paypal'}
                     onChange={(e) => setPaymentMethod(e.target.value)}
-                    className="mr-3"
+                    className="mr-3 text-orange-600 focus:ring-orange-500"
                   />
-                  <span>PayPal</span>
+                  <span className="text-gray-900">PayPal</span>
                 </label>
               </div>
               
               {paymentMethod === 'paypal' && (
-                <div className="mt-6 bg-dark-600 p-4 rounded-lg">
-                  <p className="text-sm text-gray-400 mb-4">
+                <div className="mt-6 bg-orange-50 p-4 rounded-lg border border-orange-200">
+                  <p className="text-sm text-gray-700 mb-4">
                     You will be redirected to PayPal to complete your payment securely.
                   </p>
                   <PayPalButton
@@ -309,8 +317,8 @@ const CheckoutPage = () => {
               )}
               
               {paymentMethod === 'cod' && (
-                <div className="mt-6 bg-dark-600 p-4 rounded-lg">
-                  <p className="text-sm text-gray-400">
+                <div className="mt-6 bg-orange-50 p-4 rounded-lg border border-orange-200">
+                  <p className="text-sm text-gray-700">
                     Pay with cash when your order is delivered. Please note that some locations may not be eligible for COD.
                   </p>
                 </div>
@@ -320,7 +328,7 @@ const CheckoutPage = () => {
               <button 
                 type="submit"
                 disabled={loading}
-                className="btn-primary w-full"
+                className="w-full flex justify-center items-center px-4 py-3 border border-transparent rounded-md shadow-sm text-white bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-all duration-300 hover:shadow-lg font-medium"
               >
                 {loading ? (
                   <span className="flex items-center justify-center">
@@ -328,7 +336,7 @@ const CheckoutPage = () => {
                     Processing...
                   </span>
                 ) : (
-                  `Place Order - ${orderTotal.toFixed(2)}`
+                  `Place Order - $${orderTotal.toFixed(2)}`
                 )}
               </button>
             )}
@@ -337,8 +345,8 @@ const CheckoutPage = () => {
         
         {/* Order Summary */}
         <div className="lg:pl-8">
-          <div className="bg-dark-700 rounded-lg p-6 sticky top-24">
-            <h2 className="text-xl font-semibold mb-6">Order Summary</h2>
+          <div className="bg-white rounded-lg p-6 sticky top-24 shadow-lg border border-orange-100">
+            <h2 className="text-xl font-semibold mb-6 text-gray-900">Order Summary</h2>
             
             {/* Order Items */}
             <div className="space-y-4 mb-6">
@@ -350,36 +358,37 @@ const CheckoutPage = () => {
                     className="w-16 h-16 object-cover rounded-md"
                   />
                   <div className="ml-4 flex-grow">
-                    <h3 className="font-medium">{item.name}</h3>
-                    <p className="text-sm text-gray-400">
+                    <h3 className="font-medium text-gray-900">{item.name}</h3>
+                    <p className="text-sm text-gray-600">
                       Size: {item.size} | Color: {item.color} | Qty: {item.quantity}
                     </p>
                   </div>
-                  <span className="font-medium">${(item.price * item.quantity).toFixed(2)}</span>
+                  <span className="font-medium text-gray-900">${(item.price * item.quantity).toFixed(2)}</span>
                 </div>
               ))}
             </div>
             
             {/* Price Breakdown */}
-            <div className="space-y-3 border-t border-dark-600 pt-4">
+            <div className="space-y-3 border-t border-orange-200 pt-4">
               <div className="flex justify-between">
-                <span className="text-gray-400">Subtotal</span>
-                <span>${cart.total.toFixed(2)}</span>
+                <span className="text-gray-600">Subtotal</span>
+                <span className="text-gray-900">${cart.total.toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-400">Shipping</span>
-                <span>{shippingCost === 0 ? 'Free' : `$${shippingCost.toFixed(2)}`}</span>
+                <span className="text-gray-600">Shipping</span>
+                <span className="text-gray-900">{shippingCost === 0 ? 'Free' : `$${shippingCost.toFixed(2)}`}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-400">Tax</span>
-                <span>${tax.toFixed(2)}</span>
+                <span className="text-gray-600">Tax</span>
+                <span className="text-gray-900">${tax.toFixed(2)}</span>
               </div>
-              <div className="flex justify-between font-semibold text-lg pt-3 border-t border-dark-600">
-                <span>Total</span>
-                <span>${orderTotal.toFixed(2)}</span>
+              <div className="flex justify-between font-semibold text-lg pt-3 border-t border-orange-200">
+                <span className="text-gray-900">Total</span>
+                <span className="text-gray-900">${orderTotal.toFixed(2)}</span>
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>
