@@ -86,13 +86,13 @@ const Footer = () => {
   };
   
   return (
-    <footer className="bg-dark-900 pt-12 pb-6">
+    <footer className="bg-gradient-to-br from-orange-50 via-white to-orange-100 pt-12 pb-6 border-t border-orange-200">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div>
-            <h3 className="text-xl font-bold text-white mb-4">STYLESTORE</h3>
-            <p className="text-gray-400 mb-4">Premium quality t-shirts for men, women and kids. Designed for comfort and style.</p>
+            <h3 className="text-xl font-bold text-gray-900 mb-4">QUICKBITE</h3>
+            <p className="text-gray-600 mb-4">Delicious food delivered fast. Fresh ingredients, authentic flavors, and exceptional taste in every bite.</p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-primary-500 transition-colors">
                 <Instagram size={20} />
@@ -109,21 +109,27 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Shop */}
+          {/* Menu */}
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4">Shop</h4>
+            <h4 className="text-lg font-semibold text-white mb-4">Menu</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/products/men" className="text-gray-400 hover:text-primary-500 transition-colors">Men's T-Shirts</Link>
+                <Link to="/products/pizza" className="text-gray-400 hover:text-primary-500 transition-colors">Pizza</Link>
               </li>
               <li>
-                <Link to="/products/women" className="text-gray-400 hover:text-primary-500 transition-colors">Women's T-Shirts</Link>
+                <Link to="/products/burgers" className="text-gray-400 hover:text-primary-500 transition-colors">Burgers</Link>
               </li>
               <li>
-                <Link to="/products/kids" className="text-gray-400 hover:text-primary-500 transition-colors">Kids' T-Shirts</Link>
+                <Link to="/products/chinese" className="text-gray-400 hover:text-primary-500 transition-colors">Chinese</Link>
               </li>
               <li>
-                <Link to="/products" className="text-gray-400 hover:text-primary-500 transition-colors">All Products</Link>
+                <Link to="/products/indian" className="text-gray-400 hover:text-primary-500 transition-colors">Indian</Link>
+              </li>
+              <li>
+                <Link to="/products/desserts" className="text-gray-400 hover:text-primary-500 transition-colors">Desserts</Link>
+              </li>
+              <li>
+                <Link to="/products" className="text-gray-400 hover:text-primary-500 transition-colors">Full Menu</Link>
               </li>
             </ul>
           </div>
@@ -139,10 +145,10 @@ const Footer = () => {
                 <Link to="/faq" className="text-gray-400 hover:text-primary-500 transition-colors">FAQs</Link>
               </li>
               <li>
-                <Link to="/shipping" className="text-gray-400 hover:text-primary-500 transition-colors">Shipping & Returns</Link>
+                <Link to="/delivery" className="text-gray-400 hover:text-primary-500 transition-colors">Delivery Info</Link>
               </li>
               <li>
-                <Link to="/size-guide" className="text-gray-400 hover:text-primary-500 transition-colors">Size Guide</Link>
+                <Link to="/refund-policy" className="text-gray-400 hover:text-primary-500 transition-colors">Refund Policy</Link>
               </li>
             </ul>
           </div>
@@ -153,15 +159,15 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start">
                 <MapPin size={18} className="text-primary-500 mr-2 mt-1 flex-shrink-0" />
-                <span className="text-gray-400">123 Fashion Street, Design District, CA 90210</span>
+                <span className="text-gray-400">456 Food Plaza, Culinary District, CA 90211</span>
               </li>
               <li className="flex items-center">
                 <Phone size={18} className="text-primary-500 mr-2 flex-shrink-0" />
-                <span className="text-gray-400">+1 (555) 123-4567</span>
+                <span className="text-gray-400">+1 (555) 123-BITE</span>
               </li>
               <li className="flex items-center">
                 <Mail size={18} className="text-primary-500 mr-2 flex-shrink-0" />
-                <span className="text-gray-400">support@stylestore.com</span>
+                <span className="text-gray-400">support@quickbite.com</span>
               </li>
             </ul>
           </div>
@@ -170,7 +176,7 @@ const Footer = () => {
         <div className="border-t border-dark-700 mt-10 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-500 text-sm mb-4 md:mb-0">
-              &copy; {new Date().getFullYear()} STYLESTORE. All rights reserved.
+              &copy; {new Date().getFullYear()} QUICKBITE. All rights reserved.
             </p>
             <div className="flex items-center space-x-4">
               <Link to="/privacy" className="text-gray-500 text-sm hover:text-primary-500 transition-colors">Privacy Policy</Link>

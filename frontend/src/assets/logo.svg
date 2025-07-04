@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="400" height="200" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <!-- Shopping Bag -->
-    <path d="M150 40 L170 20 L230 20 L250 40 L240 80 L160 80 Z" fill="#FF4757"/>
-    <!-- Bag Handles -->
-    <path d="M180 20 C180 5, 220 5, 220 20" stroke="#FF4757" stroke-width="6" fill="none"/>
-    <!-- Sparkles -->
-    <circle cx="270" cy="30" r="2" fill="white"/>
-    <circle cx="260" cy="45" r="2" fill="white"/>
-    <circle cx="275" cy="50" r="2" fill="white"/>
+    <!-- Plate -->
+    <circle cx="120" cy="60" r="35" fill="#f97316" stroke="#ea580c" stroke-width="2"/>
+    <!-- Food on plate -->
+    <circle cx="115" cy="55" r="8" fill="#fbbf24"/>
+    <circle cx="125" cy="58" r="6" fill="#16a34a"/>
+    <circle cx="118" cy="65" r="5" fill="#dc2626"/>
+    <!-- Fork -->
+    <path d="M160 35 L160 85 M155 35 L155 50 M165 35 L165 50" stroke="#9ca3af" stroke-width="3" stroke-linecap="round"/>
+    <!-- Delivery badge/speed lines -->
+    <path d="M180 45 L190 45 M185 40 L195 40 M185 50 L195 50" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/>
     <!-- Text -->
-    <text x="200" y="120" font-family="Inter, Arial" font-weight="600" font-size="36" text-anchor="middle" fill="white" letter-spacing="2">STYLESTORE</text>
+    <text x="200" y="120" font-family="Inter, Arial" font-weight="700" font-size="36" text-anchor="middle" fill="white" letter-spacing="1.5">QUICKBITE</text>
+    <text x="200" y="145" font-family="Inter, Arial" font-weight="400" font-size="14" text-anchor="middle" fill="#f97316" letter-spacing="1">FAST FOOD DELIVERY</text>
 </svg>
