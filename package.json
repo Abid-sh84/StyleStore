@@ -1,7 +1,7 @@
 {
-  "name": "tshirt-ecommerce-app",
+  "name": "food-delivery-app",
   "version": "1.0.0",
-  "description": "Full stack e-commerce application for t-shirts",
+  "description": "Full stack food delivery application",
   "main": "index.js",  "scripts": {
     "backend": "cd backend && npm run dev",
     "frontend": "cd frontend && npm run dev",
@@ -15,7 +15,8 @@
     "start": "cd backend && npm start"
   },
   "keywords": [
-    "ecommerce",
+    "food-delivery",
+    "restaurant",
     "mern",
     "react",
     "nodejs"

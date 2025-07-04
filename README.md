@@ -1,6 +1,6 @@
-# E-commerce T-shirt Application
+# QuickBite Food Delivery Application
 
-This is a full-stack e-commerce application for t-shirts with a Node.js/Express backend, MongoDB database, and a React/Vite frontend.
+This is a full-stack food delivery application with a Node.js/Express backend, MongoDB database, and a React/Vite frontend.
 
 ## Project Structure
 ```
@@ -12,21 +12,22 @@ project/
 ## Features
 
 - User authentication (register, login, profile)
-- Product catalog with advanced filters (category, price, size, color)
+- Food menu with advanced filters (category, price, cuisine type)
 - Shopping cart
 - Checkout process
-- Order management
+- Order management for food delivery
+- Restaurant management
 - MongoDB database integration
 - API endpoints for all functionality
 
 ## Database Integration
 
-The application has been updated to use MongoDB for persistent data storage. Key features include:
+The application uses MongoDB for persistent data storage. Key features include:
 
-- Products stored and retrieved from MongoDB
-- API routes for fetching all products, top products, and individual product details
-- Advanced filtering capabilities by category, price, and search terms
-- Products seeding script for easy database initialization
+- Food items stored and retrieved from MongoDB
+- API routes for fetching all dishes, popular dishes, and individual dish details
+- Advanced filtering capabilities by category, cuisine, price, and search terms
+- Food seeding script for easy database initialization
 - Fallback to dummy data in frontend when database connection fails
 
 ## Setup Instructions

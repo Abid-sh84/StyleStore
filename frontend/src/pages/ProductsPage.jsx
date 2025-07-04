@@ -5,127 +5,163 @@ import Loader from '../components/common/Loader';
 import { SlidersHorizontal, ChevronDown, Search } from 'lucide-react';
 import { getProducts } from '../services/productService';
 
-// Placeholder product data (would normally come from backend)
+// Placeholder food product data (would normally come from backend)
 const dummyProducts = [
   {
     _id: '1',
-    name: 'Classic Black Tee',
-    price: 29.99,
-    category: 'men',
-    images: ['https://images.pexels.com/photos/7679720/pexels-photo-7679720.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'],
-    description: 'A timeless black t-shirt made from premium cotton.',
-    sizes: ['S', 'M', 'L', 'XL'],
-    colors: ['Black', 'Navy', 'White'],
+    name: 'Margherita Pizza',
+    price: 24.99,
+    category: 'pizza',
+    images: ['https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=400&h=400&fit=crop&q=80'],
+    description: 'Classic pizza with fresh mozzarella, tomato sauce, and basil.',
+    restaurant: 'Mario\'s Kitchen',
+    ingredients: ['Mozzarella', 'Tomato Sauce', 'Fresh Basil', 'Olive Oil'],
+    spiceLevel: 'Mild',
     isNew: true,
     discountPercentage: 0
   },
   {
     _id: '2',
-    name: 'Vintage Print Tee',
-    price: 34.99,
-    category: 'men',
-    images: ['https://images.pexels.com/photos/6311387/pexels-photo-6311387.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'],
-    description: 'Vintage-inspired graphic t-shirt with a classic print.',
-    sizes: ['S', 'M', 'L', 'XL'],
-    colors: ['Gray', 'Black', 'White'],
+    name: 'Pepperoni Pizza',
+    price: 28.99,
+    category: 'pizza',
+    images: ['https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=400&fit=crop&q=80'],
+    description: 'Classic pepperoni pizza with mozzarella cheese.',
+    restaurant: 'Mario\'s Kitchen',
+    ingredients: ['Pepperoni', 'Mozzarella', 'Tomato Sauce'],
+    spiceLevel: 'Medium',
     isNew: false,
     discountPercentage: 15
   },
   {
     _id: '3',
-    name: 'Casual White Tee',
-    price: 24.99,
-    category: 'women',
-    images: ['https://images.pexels.com/photos/5885844/pexels-photo-5885844.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'],
-    description: 'Comfortable and versatile white t-shirt for any occasion.',
-    sizes: ['XS', 'S', 'M', 'L'],
-    colors: ['White'],
+    name: 'Classic Cheeseburger',
+    price: 18.99,
+    category: 'burgers',
+    images: ['https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=400&fit=crop&q=80'],
+    description: 'Juicy beef patty with cheese, lettuce, tomato, and special sauce.',
+    restaurant: 'Burger House',
+    ingredients: ['Beef Patty', 'Cheese', 'Lettuce', 'Tomato', 'Special Sauce'],
+    spiceLevel: 'Mild',
     isNew: false,
     discountPercentage: 0
   },
   {
     _id: '4',
-    name: 'Slim Fit Stripe Tee',
-    price: 29.99,
-    category: 'women',
-    images: ['https://images.pexels.com/photos/6311153/pexels-photo-6311153.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'],
-    description: 'Slim fit t-shirt with horizontal stripes.',
-    sizes: ['XS', 'S', 'M', 'L'],
-    colors: ['Blue', 'White'],
+    name: 'Bacon Burger',
+    price: 22.99,
+    category: 'burgers',
+    images: ['https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop&q=80'],
+    description: 'Classic burger topped with crispy bacon and cheese.',
+    restaurant: 'Burger House',
+    ingredients: ['Beef Patty', 'Bacon', 'Cheese', 'Lettuce', 'Tomato'],
+    spiceLevel: 'Medium',
     isNew: true,
     discountPercentage: 0
   },
   {
     _id: '5',
-    name: 'Fun Graphic Tee',
-    price: 19.99,
-    category: 'kids',
-    images: ['https://images.pexels.com/photos/5559986/pexels-photo-5559986.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'],
-    description: 'Playful graphic t-shirt perfect for active kids.',
-    sizes: ['3-4Y', '5-6Y', '7-8Y', '9-10Y'],
-    colors: ['Yellow'],
+    name: 'Chicken Ramen',
+    price: 16.99,
+    category: 'chinese',
+    images: ['https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=400&fit=crop&q=80'],
+    description: 'Rich chicken broth with noodles, vegetables, and tender chicken.',
+    restaurant: 'Tokyo Noodles',
+    ingredients: ['Chicken', 'Ramen Noodles', 'Vegetables', 'Egg'],
+    spiceLevel: 'Mild',
     isNew: false,
     discountPercentage: 10
   },
   {
     _id: '6',
-    name: 'Adventure Tee',
-    price: 22.99,
-    category: 'kids',
-    images: ['https://images.pexels.com/photos/6802976/pexels-photo-6802976.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'],
-    description: 'Durable and comfortable t-shirt for little adventurers.',
-    sizes: ['3-4Y', '5-6Y', '7-8Y', '9-10Y'],
-    colors: ['Green'],
+    name: 'Beef Lo Mein',
+    price: 19.99,
+    category: 'chinese',
+    images: ['https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&h=400&fit=crop&q=80'],
+    description: 'Stir-fried noodles with tender beef and fresh vegetables.',
+    restaurant: 'Tokyo Noodles',
+    ingredients: ['Beef', 'Lo Mein Noodles', 'Bell Peppers', 'Onions'],
+    spiceLevel: 'Medium',
     isNew: true,
     discountPercentage: 0
   },
   {
     _id: '7',
-    name: 'Premium Navy Tee',
-    price: 32.99,
-    category: 'men',
-    images: ['https://images.pexels.com/photos/6311672/pexels-photo-6311672.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'],
-    description: 'Premium quality navy t-shirt with perfect fit.',
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    colors: ['Navy', 'Black', 'Gray'],
+    name: 'Chicken Tikka Masala',
+    price: 21.99,
+    category: 'indian',
+    images: ['https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=400&fit=crop&q=80'],
+    description: 'Creamy tomato-based curry with tender chicken pieces.',
+    restaurant: 'Spice Garden',
+    ingredients: ['Chicken', 'Tomato Curry', 'Cream', 'Indian Spices'],
+    spiceLevel: 'Medium',
     isNew: false,
     discountPercentage: 0
   },
   {
-    _id: '9',
-    name: 'Modern Striped Tee',
-    price: 36.99,
-    category: 'men',
-    images: ['https://images.pexels.com/photos/6975184/pexels-photo-6975184.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'],
-    description: 'Modern striped t-shirt with contemporary design.',
-    sizes: ['S', 'M', 'L', 'XL'],
-    colors: ['Blue/White', 'Black/Gray', 'Green/White'],
+    _id: '8',
+    name: 'Vegetable Biryani',
+    price: 18.99,
+    category: 'indian',
+    images: ['https://images.unsplash.com/photo-1563379091339-03246963d071?w=400&h=400&fit=crop&q=80'],
+    description: 'Fragrant basmati rice with mixed vegetables and aromatic spices.',
+    restaurant: 'Spice Garden',
+    ingredients: ['Basmati Rice', 'Mixed Vegetables', 'Saffron', 'Spices'],
+    spiceLevel: 'Mild',
     isNew: true,
     discountPercentage: 0
   },
   {
-    _id: '10',
-    name: 'Athletic Performance Tee',
-    price: 39.99,
-    category: 'men',
-    images: ['https://images.pexels.com/photos/7987347/pexels-photo-7987347.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'],
-    description: 'Technical athletic t-shirt designed for performance.',
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    colors: ['Red', 'Black', 'Blue'],
+    _id: '9',
+    name: 'Chocolate Lava Cake',
+    price: 12.99,
+    category: 'desserts',
+    images: ['https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400&h=400&fit=crop&q=80'],
+    description: 'Warm chocolate cake with molten chocolate center.',
+    restaurant: 'Sweet Treats',
+    ingredients: ['Dark Chocolate', 'Butter', 'Eggs', 'Sugar'],
+    spiceLevel: 'None',
     isNew: false,
     discountPercentage: 10
   },
   {
-    _id: '8',
-    name: 'Relaxed Fit Tee',
-    price: 27.99,
-    category: 'women',
-    images: ['https://images.pexels.com/photos/5709365/pexels-photo-5709365.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'],
-    description: 'Relaxed fit t-shirt for effortless everyday style.',
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
-    colors: ['Blush'],
+    _id: '10',
+    name: 'Cheesecake',
+    price: 9.99,
+    category: 'desserts',
+    images: ['https://images.unsplash.com/photo-1567958234298-5f168d6d8582?w=400&h=400&fit=crop&q=80'],
+    description: 'Creamy New York style cheesecake with berry compote.',
+    restaurant: 'Sweet Treats',
+    ingredients: ['Cream Cheese', 'Graham Crackers', 'Berries', 'Sugar'],
+    spiceLevel: 'None',
     isNew: false,
     discountPercentage: 20
+  },
+  {
+    _id: '11',
+    name: 'Caesar Salad',
+    price: 14.99,
+    category: 'healthy',
+    images: ['https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=400&fit=crop&q=80'],
+    description: 'Fresh romaine lettuce with parmesan, croutons, and caesar dressing.',
+    restaurant: 'Green Garden',
+    ingredients: ['Romaine Lettuce', 'Parmesan', 'Croutons', 'Caesar Dressing'],
+    spiceLevel: 'None',
+    isNew: true,
+    discountPercentage: 0
+  },
+  {
+    _id: '12',
+    name: 'Grilled Chicken Salad',
+    price: 17.99,
+    category: 'healthy',
+    images: ['https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&h=400&fit=crop&q=80'],
+    description: 'Mixed greens with grilled chicken, cherry tomatoes, and vinaigrette.',
+    restaurant: 'Green Garden',
+    ingredients: ['Grilled Chicken', 'Mixed Greens', 'Cherry Tomatoes', 'Vinaigrette'],
+    spiceLevel: 'None',
+    isNew: false,
+    discountPercentage: 0
   }
 ];
 
@@ -137,16 +173,16 @@ const ProductsPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({
-    price: [0, 100],
-    sizes: [],
-    colors: [],
+    price: [0, 50],
+    spiceLevel: [],
+    restaurants: [],
     sort: 'newest'
   });
   const [showFilters, setShowFilters] = useState(false);
 
-  // Get unique sizes and colors from products
-  const allSizes = [...new Set(dummyProducts.flatMap(p => p.sizes))];
-  const allColors = [...new Set(dummyProducts.flatMap(p => p.colors))];
+  // Get unique spice levels and restaurants from products
+  const allSpiceLevels = [...new Set(dummyProducts.map(p => p.spiceLevel))];
+  const allRestaurants = [...new Set(dummyProducts.map(p => p.restaurant))];
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -159,8 +195,8 @@ const ProductsPage = () => {
           sort: filters.sort,
           minPrice: filters.price[0],
           maxPrice: filters.price[1],
-          sizes: filters.sizes.length > 0 ? filters.sizes : undefined,
-          colors: filters.colors.length > 0 ? filters.colors : undefined
+          spiceLevel: filters.spiceLevel.length > 0 ? filters.spiceLevel : undefined,
+          restaurants: filters.restaurants.length > 0 ? filters.restaurants : undefined
         };
         const data = await getProducts(queryParams);
         setProducts(data.products || []);
@@ -187,15 +223,15 @@ const ProductsPage = () => {
         }
       
         // Apply additional filters
-        if (filters.sizes.length > 0) {
+        if (filters.spiceLevel.length > 0) {
           filteredProducts = filteredProducts.filter(p => 
-            p.sizes.some(size => filters.sizes.includes(size))
+            filters.spiceLevel.includes(p.spiceLevel)
           );
         }
         
-        if (filters.colors.length > 0) {
+        if (filters.restaurants.length > 0) {
           filteredProducts = filteredProducts.filter(p => 
-            p.colors.some(color => filters.colors.includes(color))
+            filters.restaurants.includes(p.restaurant)
           );
         }
         
@@ -232,21 +268,21 @@ const ProductsPage = () => {
     fetchProducts();
   }, [category, searchQuery, filters]);
 
-  const toggleSizeFilter = (size) => {
+  const toggleSpiceLevelFilter = (spiceLevel) => {
     setFilters(prev => {
-      const newSizes = prev.sizes.includes(size)
-        ? prev.sizes.filter(s => s !== size)
-        : [...prev.sizes, size];
-      return { ...prev, sizes: newSizes };
+      const newSpiceLevels = prev.spiceLevel.includes(spiceLevel)
+        ? prev.spiceLevel.filter(s => s !== spiceLevel)
+        : [...prev.spiceLevel, spiceLevel];
+      return { ...prev, spiceLevel: newSpiceLevels };
     });
   };
 
-  const toggleColorFilter = (color) => {
+  const toggleRestaurantFilter = (restaurant) => {
     setFilters(prev => {
-      const newColors = prev.colors.includes(color)
-        ? prev.colors.filter(c => c !== color)
-        : [...prev.colors, color];
-      return { ...prev, colors: newColors };
+      const newRestaurants = prev.restaurants.includes(restaurant)
+        ? prev.restaurants.filter(r => r !== restaurant)
+        : [...prev.restaurants, restaurant];
+      return { ...prev, restaurants: newRestaurants };
     });
   };
 
@@ -259,22 +295,22 @@ const ProductsPage = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-24">
+    <div className="container mx-auto px-4 py-24 bg-gradient-to-br from-orange-50 via-white to-orange-100 min-h-screen">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">
-          {category ? `${category.charAt(0).toUpperCase() + category.slice(1)}'s T-shirts` : 'All T-shirts'}
+        <h1 className="text-3xl font-bold mb-2 text-gray-900">
+          {category ? `${category.charAt(0).toUpperCase() + category.slice(1)} Dishes` : 'All Dishes'}
         </h1>
-        <p className="text-gray-400">
+        <p className="text-gray-600">
           {searchQuery 
             ? `Search results for "${searchQuery}"` 
-            : `Discover our collection of premium quality t-shirts${category ? ` for ${category}` : ''}.`}
+            : `Discover our delicious collection of ${category ? category : 'food'} dishes.`}
         </p>
       </div>
 
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Mobile filters toggle */}
         <button 
-          className="lg:hidden flex items-center justify-center w-full py-2 px-4 bg-dark-700 rounded-md mb-4"
+          className="lg:hidden flex items-center justify-center w-full py-2 px-4 bg-white border border-orange-200 rounded-md mb-4 text-gray-700 hover:bg-orange-50"
           onClick={toggleFilters}
         >
           <SlidersHorizontal size={18} className="mr-2" />
@@ -284,61 +320,61 @@ const ProductsPage = () => {
 
         {/* Filters sidebar */}
         <div className={`lg:w-1/4 ${showFilters ? 'block' : 'hidden lg:block'}`}>
-          <div className="bg-dark-700 rounded-lg p-6 sticky top-24">
-            <h2 className="text-xl font-semibold mb-6">Filters</h2>
+          <div className="bg-white rounded-lg p-6 sticky top-24 shadow-lg border border-orange-100">
+            <h2 className="text-xl font-semibold mb-6 text-gray-900">Filters</h2>
             
             {/* Price Range */}
             <div className="mb-6">
-              <h3 className="font-medium mb-3">Price Range</h3>
+              <h3 className="font-medium mb-3 text-gray-800">Price Range</h3>
               <div className="flex items-center justify-between mb-2">
-                <span>${filters.price[0]}</span>
-                <span>${filters.price[1]}</span>
+                <span className="text-gray-600">${filters.price[0]}</span>
+                <span className="text-gray-600">${filters.price[1]}</span>
               </div>
               <input 
                 type="range" 
                 min="0" 
-                max="100" 
+                max="50" 
                 value={filters.price[1]} 
                 onChange={(e) => setFilters(prev => ({ ...prev, price: [prev.price[0], parseInt(e.target.value)] }))}
-                className="w-full h-2 bg-dark-600 rounded-lg appearance-none cursor-pointer"
+                className="w-full h-2 bg-orange-200 rounded-lg appearance-none cursor-pointer slider"
               />
             </div>
             
-            {/* Sizes */}
+            {/* Spice Level */}
             <div className="mb-6">
-              <h3 className="font-medium mb-3">Sizes</h3>
+              <h3 className="font-medium mb-3 text-gray-800">Spice Level</h3>
               <div className="flex flex-wrap gap-2">
-                {allSizes.map(size => (
+                {allSpiceLevels.map(spiceLevel => (
                   <button
-                    key={size}
-                    onClick={() => toggleSizeFilter(size)}
-                    className={`px-3 py-1 text-sm rounded-md border ${
-                      filters.sizes.includes(size) 
-                        ? 'bg-primary-600 border-primary-600 text-white' 
-                        : 'bg-dark-600 border-dark-500 text-gray-300 hover:border-gray-400'
+                    key={spiceLevel}
+                    onClick={() => toggleSpiceLevelFilter(spiceLevel)}
+                    className={`px-3 py-1 text-sm rounded-md border transition-colors ${
+                      filters.spiceLevel.includes(spiceLevel) 
+                        ? 'bg-orange-500 border-orange-500 text-white' 
+                        : 'bg-white border-orange-200 text-gray-700 hover:border-orange-400 hover:bg-orange-50'
                     }`}
                   >
-                    {size}
+                    {spiceLevel}
                   </button>
                 ))}
               </div>
             </div>
             
-            {/* Colors */}
+            {/* Restaurants */}
             <div className="mb-6">
-              <h3 className="font-medium mb-3">Colors</h3>
+              <h3 className="font-medium mb-3 text-gray-800">Restaurants</h3>
               <div className="flex flex-wrap gap-2">
-                {allColors.map(color => (
+                {allRestaurants.map(restaurant => (
                   <button
-                    key={color}
-                    onClick={() => toggleColorFilter(color)}
-                    className={`px-3 py-1 text-sm rounded-md border ${
-                      filters.colors.includes(color) 
-                        ? 'bg-primary-600 border-primary-600 text-white' 
-                        : 'bg-dark-600 border-dark-500 text-gray-300 hover:border-gray-400'
+                    key={restaurant}
+                    onClick={() => toggleRestaurantFilter(restaurant)}
+                    className={`px-3 py-1 text-sm rounded-md border transition-colors ${
+                      filters.restaurants.includes(restaurant) 
+                        ? 'bg-orange-500 border-orange-500 text-white' 
+                        : 'bg-white border-orange-200 text-gray-700 hover:border-orange-400 hover:bg-orange-50'
                     }`}
                   >
-                    {color}
+                    {restaurant}
                   </button>
                 ))}
               </div>
@@ -347,12 +383,12 @@ const ProductsPage = () => {
             {/* Reset Filters */}
             <button 
               onClick={() => setFilters({
-                price: [0, 100],
-                sizes: [],
-                colors: [],
+                price: [0, 50],
+                spiceLevel: [],
+                restaurants: [],
                 sort: 'newest'
               })}
-              className="w-full py-2 text-sm text-primary-400 hover:text-primary-300"
+              className="w-full py-2 text-sm text-orange-600 hover:text-orange-700 font-medium"
             >
               Reset All Filters
             </button>
@@ -363,14 +399,14 @@ const ProductsPage = () => {
         <div className="lg:w-3/4">
           {/* Sort options */}
           <div className="flex justify-between items-center mb-6">
-            <p className="text-gray-400">{products.length} products</p>
+            <p className="text-gray-600">{products.length} dishes</p>
             <div className="flex items-center">
-              <label htmlFor="sort" className="mr-2 text-sm text-gray-400">Sort by:</label>
+              <label htmlFor="sort" className="mr-2 text-sm text-gray-600">Sort by:</label>
               <select 
                 id="sort" 
                 value={filters.sort}
                 onChange={handleSortChange}
-                className="form-input text-sm py-1 px-2 w-40"
+                className="w-full px-4 py-2 rounded-md bg-white border border-orange-200 text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm py-1 px-2 w-40"
               >
                 <option value="newest">Newest</option>
                 <option value="price-low-high">Price: Low to High</option>
@@ -386,18 +422,18 @@ const ProductsPage = () => {
               <Loader size="lg" text="Loading products..." />
             </div>
           ) : products.length === 0 ? (
-            <div className="bg-dark-700 rounded-lg p-8 text-center">
-              <Search size={48} className="mx-auto mb-4 text-gray-500" />
-              <h3 className="text-xl font-medium mb-2">No products found</h3>
-              <p className="text-gray-400 mb-4">Try adjusting your filters or search criteria.</p>
+            <div className="bg-white rounded-lg p-8 text-center shadow-lg border border-orange-100">
+              <Search size={48} className="mx-auto mb-4 text-gray-400" />
+              <h3 className="text-xl font-medium mb-2 text-gray-900">No dishes found</h3>
+              <p className="text-gray-600 mb-4">Try adjusting your filters or search criteria.</p>
               <button 
                 onClick={() => setFilters({
-                  price: [0, 100],
-                  sizes: [],
-                  colors: [],
+                  price: [0, 50],
+                  spiceLevel: [],
+                  restaurants: [],
                   sort: 'newest'
                 })}
-                className="btn-primary"
+                className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
               >
                 Reset Filters
               </button>

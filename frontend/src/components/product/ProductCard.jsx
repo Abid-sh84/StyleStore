@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCart, Clock, Star } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 
 const ProductCard = ({ product }) => {
@@ -35,7 +35,7 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className="card group">
+    <div className="card group food-card-hover">
       <Link to={`/product/${product._id}`} className="block">
         <div className="relative overflow-hidden">
           <img 
@@ -58,7 +58,25 @@ const ProductCard = ({ product }) => {
           
           {(!product.countInStock || product.countInStock <= 0) && (
             <span className="absolute top-2 left-2 bg-red-600 text-white text-xs px-2 py-1 rounded">
-              OUT OF STOCK
+              SOLD OUT
+            </span>
+          )}
+          
+          {product.isVegetarian && (
+            <span className="absolute bottom-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded">
+              VEG
+            </span>
+          )}
+          
+          {product.isVegan && (
+            <span className="absolute bottom-2 left-2 bg-green-700 text-white text-xs px-2 py-1 rounded">
+              VEGAN
+            </span>
+          )}
+          
+          {product.spiceLevel && product.spiceLevel !== 'none' && (
+            <span className="absolute bottom-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
+              🌶️ {product.spiceLevel.toUpperCase()}
             </span>
           )}
           
@@ -66,10 +84,10 @@ const ProductCard = ({ product }) => {
             <button 
               onClick={handleAddToCart}
               disabled={!product.countInStock || product.countInStock <= 0}
-              className={`bg-white text-dark-900 p-3 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ${
+              className={`bg-white text-gray-900 p-3 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 shadow-lg hover:shadow-orange-500/25 ${
                 (!product.countInStock || product.countInStock <= 0) ? 'opacity-50 cursor-not-allowed' : ''
               }`}
-              title={(!product.countInStock || product.countInStock <= 0) ? 'Out of Stock' : 'Add to Cart'}
+              title={(!product.countInStock || product.countInStock <= 0) ? 'Sold Out' : 'Add to Cart'}
             >
               <ShoppingCart size={20} />
             </button>
@@ -77,19 +95,40 @@ const ProductCard = ({ product }) => {
         </div>
         
         <div className="p-4">
-          <h3 className="font-medium text-gray-200 mb-1 truncate">{product.name}</h3>
+          <h3 className="font-medium text-gray-900 mb-2 truncate">{product.name}</h3>
+          
+          {/* Restaurant name */}
+          {product.restaurant && (
+            <p className="text-gray-600 text-sm mb-2">{product.restaurant}</p>
+          )}
+          
+          {/* Rating and preparation time */}
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center space-x-1">
+              <Star size={14} className="text-yellow-400 fill-current" />
+              <span className="text-sm text-gray-700">{product.rating || 0}</span>
+              <span className="text-sm text-gray-500">({product.numReviews || 0})</span>
+            </div>
+            {product.preparationTime && (
+              <div className="flex items-center space-x-1 text-gray-600">
+                <Clock size={14} />
+                <span className="text-sm">{product.preparationTime} min</span>
+              </div>
+            )}
+          </div>
+          
           <div className="flex items-center justify-between">
             <div>
               {product.discountPercentage > 0 ? (
                 <div className="flex items-center space-x-2">
-                  <span className="font-semibold text-primary-400">${(product.price * (1 - product.discountPercentage / 100)).toFixed(2)}</span>
+                  <span className="font-semibold text-primary-600">${(product.price * (1 - product.discountPercentage / 100)).toFixed(2)}</span>
                   <span className="text-gray-500 text-sm line-through">${product.price.toFixed(2)}</span>
                 </div>
               ) : (
-                <span className="font-semibold text-gray-300">${product.price.toFixed(2)}</span>
+                <span className="font-semibold text-gray-900">${product.price.toFixed(2)}</span>
               )}
             </div>
-            <div className="text-sm text-gray-400">{product.category}</div>
+            <div className="text-sm text-gray-600 capitalize">{product.category}</div>
           </div>
         </div>
       </Link>
