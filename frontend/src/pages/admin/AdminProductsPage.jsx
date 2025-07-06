@@ -162,7 +162,9 @@ const AdminProductsPage = () => {
                         </div>
                         <div className="ml-4">
                           <div className="text-sm font-medium text-gray-200">{product.name}</div>
-                          <div className="text-xs text-gray-500">{product.sizes.join(', ')}</div>
+                          <div className="text-xs text-gray-500">
+                            {product.sizes && Array.isArray(product.sizes) ? product.sizes.join(', ') : 'No sizes'}
+                          </div>
                         </div>
                       </div>
                     </td>
@@ -172,15 +174,15 @@ const AdminProductsPage = () => {
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
-                      ${product.price.toFixed(2)}
+                      ${(product.price || 0).toFixed(2)}
                       {product.discountPercentage > 0 && (
                         <span className="ml-2 text-xs text-green-500">-{product.discountPercentage}%</span>
                       )}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      {product.countInStock > 0 ? (
+                      {(product.countInStock !== undefined && product.countInStock > 0) || (product.inStock !== false) ? (
                         <span className="px-2 py-1 text-xs rounded-full bg-green-900 text-green-300">
-                          {product.countInStock} In Stock
+                          {product.countInStock !== undefined ? `${product.countInStock} In Stock` : 'In Stock'}
                         </span>
                       ) : (
                         <span className="px-2 py-1 text-xs rounded-full bg-red-900 text-red-300">
